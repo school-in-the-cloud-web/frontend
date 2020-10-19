@@ -37,7 +37,12 @@ html{font-size:62.5%;}
     padding: 10px;
 }
 
-.form {
+.cloud{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+form {
     display: flex;
     background-color: white;
     justify-content: center;
@@ -52,8 +57,4 @@ html{font-size:62.5%;}
 
 .label{
     margin-top:2rem ;
-}
-.cloud{
-    font-size: 4rem;
-    font-weight: bold;
 }

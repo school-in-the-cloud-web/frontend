@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../components/Signup.css'
-
+import Schema from './Schema'
+import * as yup from 'yup'
 export default function Signup(){
+    const initalTValue = true
     const initialFormValues = {
         firstName: '',
         lastName: '',
@@ -10,33 +12,64 @@ export default function Signup(){
         email: '',
         role: '',
     }
+    const [disabled, setDisabled] = useState(initalTValue)
     const [errors, setErrors] = useState(initialFormValues)
     const [formValues, setFormvalues] = useState(initialFormValues)
+
+    const change = e => {
+        const {checked, name, type, value} = e.target
+        const valueToUse = type === 'checkbox' ? checked : value
+        setFormvalues({...formValues, [name]: valueToUse})
+        hadleSetErrors(name, valueToUse)
+    }
+
+    const submit = e => {
+        e.preventDefault()
+        console.log(formValues)
+    }
+
+    useEffect(() => {
+        Schema.isValid(formValues)
+            .then(valid => {
+                setDisabled(!valid)
+            }).catch(err => {
+                console.log(err)
+            })
+    }, [formValues])
+
+    const hadleSetErrors = (name, value) => {
+        yup.reach(Schema, name).validate(value)
+            .then(() => setErrors({...errors, [name]: ''}))
+            .catch(err => {setErrors({...errors, [name]: err.errors[0]})})
+    }
+
+    console.log(errors)
+
+    
     return(
         <div className = 'MainDiv'> 
             <h1 className='cloud'>Cloud School</h1>
-            <from className='form'>
-                <label className='label'>First Name</label>
-                <input type='text' name='firstName'/>
+            <form onSubmit={submit}>
+                <label  className='label'>First Name</label>
+                <input onChange={change} value={formValues.firstName} type='text' name='firstName'/>
                 <label className='label'>Last Name</label>
-                <input type='text' name='lastName'/>
+                <input  onChange={change} value={formValues.lastName} type='text' name='lastName'/>
                 <label className='label'>Email</label>
-                <input type='text' name='email'/>
+                <input  onChange={change} value={formValues.email} type='text' name='email'/>
                 <label className='label'>Role</label>
-                <select name='role'>
+                <select  onChange={change} value={formValues.role} name='role'>
                     <option value=''>---Select Role---</option>
                     <option value='student'>Student</option>
                     <option value='volunteer'>Volunteer</option>
                 </select>
                 <label className='label'>Password</label>
-                <input type='password' name='password'/>
+                <input  onChange={change} value={formValues.password} type='password' name='password'/>
                 <label className='label'>Confirm Password</label>
-                <input type='password' name='confirmPassword'/>
+                <input  onChange={change} value={formValues.confirmPassword} type='password' name='confirmPassword'/>
                 <label className='label'>
-                    <input type='submit'/>
+                    <input disabled={disabled} type='submit'/>
                 </label>
-
-            </from>
+            </form>
         </div>
     )
 }
