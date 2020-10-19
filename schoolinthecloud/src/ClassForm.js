@@ -9,6 +9,7 @@ const ClassForm = (props) => {
         <Label>Class Name</Label>
         <Input type="text" name="className" id="className"/>
       </FormGroup>
+      <br />
       <FormGroup>
         <Label for="instructor">Instructor</Label>
         <Input type="select" name="instructor" id="instructor">
@@ -19,6 +20,7 @@ const ClassForm = (props) => {
           <option>Professor Moriarty</option>
         </Input>
       </FormGroup>
+      <br />
       <FormGroup>
         <Label for="subject">Subject</Label>
         <Input type="select" name="subject" id="subject">
@@ -29,6 +31,7 @@ const ClassForm = (props) => {
           <option>Science</option>
         </Input>
       </FormGroup>
+      <br />
       <FormGroup>
         <Label for="classDate">Class Date (YYYY-MM-DD)</Label>
         <Input type="select" name="classDate" id="classDate">
@@ -39,45 +42,19 @@ const ClassForm = (props) => {
           <option>2021-03-01</option>
         </Input>
       </FormGroup>
+      <br />
       <FormGroup>
         <Label for="additionalInfo">Additional Information</Label>
         <Input type="textarea" name="additionalInfo" id="additionalInfo" />
       </FormGroup>
-      {/* <FormGroup>
-        <Label for="exampleFile">File</Label>
-        <Input type="file" name="file" id="exampleFile" />
-        <FormText color="muted">
-          This is some placeholder block-level help text for the above input.
-          It's a bit lighter and easily wraps to a new line.
-        </FormText> */}
-      {/* </FormGroup> */}
-      {/* <FormGroup tag="fieldset">
-        <legend>Grade Level</legend>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1"  value=""/>{' '}
-            1st - 4th Grade
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="radio" name="radio1" />{' '}
-            5th - 8th Grade
-          </Label>
-        </FormGroup>
-        <FormGroup check disabled>
-          <Label check>
-            <Input type="radio" name="radio1" disabled />{' '}
-            9th - 12th Grade
-          </Label>
-        </FormGroup>
-      </FormGroup> */}
+      <br />
       <FormGroup check>
         <Label check>
           <Input type="checkbox" />{' '}
           Make class private
         </Label>
       </FormGroup>
+      <br />
       <Button>Submit Class</Button>
     </Form>
   );

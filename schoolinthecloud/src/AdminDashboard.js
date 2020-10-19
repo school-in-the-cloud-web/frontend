@@ -12,8 +12,10 @@ export const AdminDashboard = () => {
                 <p>Class Date: 2020-10-05</p>
                 <p>Additional Information: This class covers Trigonometry. Class time TBD. The instructor will contact you directly with more class information.</p>
             </div>
+            
             <button>Edit Class</button>
             <button>Delete Class</button>
+            <br />
             <br />
             <hr />
             <br />
