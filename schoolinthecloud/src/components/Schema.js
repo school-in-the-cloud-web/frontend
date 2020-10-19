@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 export default yup.object().shape({
+    username: yup.string().required('Username is required'),
     firstName: yup.string().required('Name is required')
     .min(3, 'firstName length must be at least 3 characters long')
     .max(30, 'firstName length must be less than or equal to 30 characters long'),

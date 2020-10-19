@@ -5,6 +5,7 @@ import * as yup from 'yup'
 export default function Signup(){
     const initalTValue = true
     const initialFormValues = {
+        username: '',
         firstName: '',
         lastName: '',
         password: '',
@@ -48,8 +49,11 @@ export default function Signup(){
     
     return(
         <div className = 'MainDiv'> 
-            <h1 className='cloud'>Cloud School</h1>
+            <h1>Cloud School</h1>
+            <h2>Sign Up</h2>
             <form onSubmit={submit}>
+                <label>Username</label>
+                <input onChange={change} value={formValues.username} type='text' name='username'/>
                 <label  className='label'>First Name</label>
                 <input onChange={change} value={formValues.firstName} type='text' name='firstName'/>
                 <label className='label'>Last Name</label>

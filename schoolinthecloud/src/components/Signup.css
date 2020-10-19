@@ -37,7 +37,7 @@ html{font-size:62.5%;}
     padding: 10px;
 }
 
-.cloud{
+h1{
     font-size: 4rem;
     font-weight: bold;
 }
@@ -56,5 +56,9 @@ form {
 }
 
 .label{
-    margin-top:2rem ;
+    margin-top:1rem ;
+}
+
+h2{
+    font-size: 3rem;
 }

@@ -3,6 +3,7 @@ import { Jumbotron, Button } from 'reactstrap';
 import './App.css';
 import ClassForm from './ClassForm'
 import Signup from './components/Signup'
+import Signin from './components/Signin'
 import {Route} from 'react-router-dom'
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
 
       <Route path = '/signup'>
         <Signup/>
+      </Route>
+
+      <Route path = '/signin'>
+        <Signin/>
       </Route>
  
     </div>
