@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 export default function Signin(){
     const initialFormValues = {
-        username: '',
+        email: '',
         password: '',
     }
     const [formValues, setFormvalues] = useState(initialFormValues)
@@ -22,8 +22,8 @@ export default function Signin(){
         <h1>Cloud School</h1>
         <h2>Sign in</h2>
         <form onSubmit={submit}>
-            <label>Username</label>
-            <input onChange={change} value={formValues.username} type='text' name='username'/>
+            <label>E-mail</label>
+            <input onChange={change} value={formValues.email} type='text' name='email'/>
             <label>Password</label>
             <input onChange={change} value={formValues.password} type='password' name='password'/>
             <label></label>

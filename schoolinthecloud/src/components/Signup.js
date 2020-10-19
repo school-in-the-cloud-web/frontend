@@ -5,7 +5,6 @@ import * as yup from 'yup'
 export default function Signup(){
     const initalTValue = true
     const initialFormValues = {
-        username: '',
         firstName: '',
         lastName: '',
         password: '',
@@ -33,8 +32,11 @@ export default function Signup(){
         Schema.isValid(formValues)
             .then(valid => {
                 setDisabled(!valid)
+                console.log(errors)
+                
             }).catch(err => {
                 console.log(err)
+                console.log(errors)
             })
     }, [formValues])
 
@@ -44,16 +46,21 @@ export default function Signup(){
             .catch(err => {setErrors({...errors, [name]: err.errors[0]})})
     }
 
-    console.log(errors)
+    
 
     
     return(
         <div className = 'MainDiv'> 
+        <div>
+            <p>{errors.firstName}</p>
+            <p>{errors.lastName}</p>
+            <p>{errors.username}</p>
+            <p>{errors.password}</p>
+            <p>{errors.confirmPassword}</p>
+        </div>
             <h1>Cloud School</h1>
             <h2>Sign Up</h2>
             <form onSubmit={submit}>
-                <label>Username</label>
-                <input onChange={change} value={formValues.username} type='text' name='username'/>
                 <label  className='label'>First Name</label>
                 <input onChange={change} value={formValues.firstName} type='text' name='firstName'/>
                 <label className='label'>Last Name</label>
