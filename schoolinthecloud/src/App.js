@@ -2,6 +2,7 @@ import React from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import './App.css';
 import ClassForm from './ClassForm'
+import Signup from './components/Signup'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <ClassForm />
         </p>
       </Jumbotron>
+ 
     </div>
   );
 };
