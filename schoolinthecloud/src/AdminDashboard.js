@@ -10,7 +10,7 @@ export const AdminDashboard = () => {
                 <p>Instructor: Professor Moriarty</p>
                 <p>Subject: Mathematics</p>
                 <p>Class Date: 2020-10-05</p>
-                <p>Additional Information: This class covers Trigonometry</p>
+                <p>Additional Information: This class covers Trigonometry. Class time TBD. The instructor will contact you directly with more class information.</p>
             </div>
             <button>Edit Class</button>
             <button>Delete Class</button>
