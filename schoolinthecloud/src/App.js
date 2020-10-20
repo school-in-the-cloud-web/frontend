@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
-import AdminDashboard from './AdminDashboard';
+import AdminDashboard from './components/AdminDashboard';
 import './App.css';
-import ClassForm from './ClassForm';
+import ClassForm from './components/ClassForm';
+import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
 
 import {Link} from 'react-router-dom';
@@ -16,7 +17,7 @@ function App() {
     axios.post('https://cloud-school-api.herokuapp.com/auth/login', {email: "starullo@email.com", password: "gRh06ZYT1gSB"})
     .then(res=>{
       console.log(res);
-      window.localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res.data.token);
     })
     .catch(err => {
       console.log(err.response)
@@ -29,6 +30,7 @@ function App() {
     //   console.log(err)
     // })
   }, [])
+  
   return (
     <div>
       <Jumbotron>
@@ -40,7 +42,9 @@ function App() {
           {/* <Button>Display Classes</Button> */}
           <hr />
           <PrivateRoute exact path='/admin-dashboard'component={AdminDashboard} />
-      </Jumbotron>
+          <PrivateRoute exact path='/admin-dashboard:id' component={EditClass} />    
+          <PrivateRoute exact path='/class-form' component={ClassForm}/>
+          </Jumbotron>
     </div>
   );
 };

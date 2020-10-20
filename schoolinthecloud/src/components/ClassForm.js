@@ -1,9 +1,18 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {connect} from 'react-redux';
+import {addClass} from '../actions';
 
 const ClassForm = (props) => {
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.addClass();
+  }
+
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>Add Class</h2>
       <FormGroup>
         <Label>Class Name</Label>
@@ -13,6 +22,7 @@ const ClassForm = (props) => {
       <FormGroup>
         <Label for="instructor">Instructor</Label>
         <Input type="select" name="instructor" id="instructor">
+
           <option>Samuel L Jackson</option>
           <option>Wile E. Coyote</option>
           <option>Morticia Adams</option>
@@ -60,4 +70,12 @@ const ClassForm = (props) => {
   );
 }
 
-export default ClassForm;
+const mapStateToProps = state => {
+    return {
+      isFetching: state.isFetching,
+      error: state.error,
+      classes: state.classes
+    }
+}
+
+export default connect(mapStateToProps, {addClass})(ClassForm);
