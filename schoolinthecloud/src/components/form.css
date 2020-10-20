@@ -29,7 +29,7 @@ html{font-size:62.5%;}
 .MainDiv{
     width: auto;
     height: 100vh;
-    background-color: lightblue;
+    background-color: #42BFDD;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,19 +40,20 @@ html{font-size:62.5%;}
 h1{
     font-size: 4rem;
     font-weight: bold;
+    color:white;
 }
 
 form {
     display: flex;
-    background-color: white;
+    background-color: lightblue;
     justify-content: center;
     align-items: center;
-    border:2px solid red;
     width: 50%;
     height:50vh;
     margin: 1rem auto;
     font-size: 2rem;
     flex-direction: column;
+    box-shadow: 10px 10px 8px #25AED0;
 }
 
 .label{
@@ -68,7 +69,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    background: linear-gradient(to bottom right, #add8e6 0%, #9999ff 100%);
+    background: linear-gradient(to bottom right,lightblue 0%,  #42BFDD 100%);
     border-radius: 10px;
 }
 h3{
@@ -87,4 +88,8 @@ span{
 }
 .sesubmit{
     margin-top: 5px;
+}
+
+.formSignIn{
+    width:40%;
 }

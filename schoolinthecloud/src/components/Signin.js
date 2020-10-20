@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import './form.css'
 export default function Signin(){
     const initialFormValues = {
         email: '',
@@ -31,7 +32,7 @@ export default function Signin(){
     <div className='MainDiv'>
         <h1>Cloud School</h1>
         <h2>Sign in</h2>
-        <form onSubmit={submit}>
+        <form className='formSignIn' onSubmit={submit}>
             <label>E-mail</label>
             <input onChange={change} value={formValues.email} type='text' name='email'/>
             <label>Password</label>

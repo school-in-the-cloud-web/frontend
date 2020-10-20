@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import '../components/Signup.css'
+import './form.css'
 import Schema from './Schema'
 import * as yup from 'yup'
 import axios from 'axios'
