@@ -8,6 +8,7 @@ export default yup.object().shape({
     .max(30, 'lastName length must be less than or equal to 30 characters long'),
     email: yup.string().required('email is required').email('email must be a valid email'),
     role: yup.string().required().oneOf(['student', 'volunteer'], 'must select a role'),
+    country: yup.string().required().max(2, 'Length must be 2 charecters long'),
     password: yup.string().required('Password is required').min(6, 'password length must be at least 6 characters long')
     .max(30, 'password length must be less than or equal to 30 characters long'),
     // .matches(/^[A-Z0-9]+$/i),
