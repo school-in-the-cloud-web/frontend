@@ -37,6 +37,13 @@ export default function Signup(){
     const submit = e => {
         e.preventDefault()
         console.log(formValues)
+        axios.post('https://cloud-school-api.herokuapp.com/auth/register', formValues)
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err=>{
+            console.log(err.response)
+        })
         
     }
 
