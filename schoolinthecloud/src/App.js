@@ -2,14 +2,16 @@ import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
+
+import Signup from './components/Signup'
+import Signin from './components/Signin'
+import {Route} from 'react-router-dom'
 import ClassForm from './components/ClassForm';
 import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
-
 import {Link} from 'react-router-dom';
-
-
 import axios from 'axios';
+
 
 function App() {
   const [classes, setClasses] = useState(null)
@@ -33,6 +35,7 @@ function App() {
   
   return (
     <div>
+
       <Jumbotron>
         <Link to='/admin-dashboard'>DASHBOARD</Link>
         <div className="jumbotron">
@@ -45,6 +48,7 @@ function App() {
           <PrivateRoute exact path='/admin-dashboard:id' component={EditClass} />    
           <PrivateRoute exact path='/class-form' component={ClassForm}/>
           </Jumbotron>
+
     </div>
   );
 };
