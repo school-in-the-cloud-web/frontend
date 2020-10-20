@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import {BrowserRouter} from 'react-router-dom';
 
 import App from './App';
+import './index.css'
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
+
   document.getElementById('root')
 );
 
