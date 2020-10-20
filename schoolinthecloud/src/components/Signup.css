@@ -62,3 +62,29 @@ form {
 h2{
     font-size: 3rem;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: linear-gradient(to bottom right, #add8e6 0%, #9999ff 100%);
+    border-radius: 10px;
+}
+h3{
+    font-size: 1.5rem;
+    text-align: center;
+}
+span{
+    font-weight: bold;
+}
+.randomq{
+    text-align: center;
+}
+.auth{
+    color:red;
+    text-align: center;
+}
+.sesubmit{
+    margin-top: 5px;
+}
