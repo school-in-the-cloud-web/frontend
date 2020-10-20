@@ -52,7 +52,7 @@ export const fetchAllClasses = () => dispatch => {
     .get('/tasks')
     .then(res => {
         console.log(res)
-        // dispatch({type: FETCH_ALL_CLASSES_SUCCESS, payload: res.data})
+        dispatch({type: FETCH_ALL_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err => {
         console.log(err);
