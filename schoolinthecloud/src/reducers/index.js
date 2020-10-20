@@ -46,7 +46,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                classes: action.payload
+                classes: state.classes
             };
         case ADD_CLASS_FAILURE:
             return {
@@ -80,7 +80,6 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isfetching: false,
-                classes: action.payload
             }
         case DELETE_CLASS_FAILURE:
             return {

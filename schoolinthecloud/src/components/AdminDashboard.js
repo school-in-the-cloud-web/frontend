@@ -15,6 +15,14 @@ export const AdminDashboard = (props) => {
 
     useEffect(()=>{
         props.fetchAllClasses()
+        // axiosWithAuth()
+        // .get('/user/student')
+        // .then(res=>{
+        //     console.log(res)
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // })
     }, [])
 
     console.log(props.classes)

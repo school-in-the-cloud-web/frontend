@@ -61,6 +61,7 @@ export const fetchAllClasses = () => dispatch => {
 }
 
 export const addClass = newClass => dispatch => {
+    console.log(newClass)
     dispatch({type: ADD_CLASS_START});
     axiosWithAuth()
     .post('/tasks', newClass)
@@ -69,8 +70,8 @@ export const addClass = newClass => dispatch => {
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
     })
     .catch(err => {
-        console.log(err);
-        dispatch({type: ADD_CLASS_FAILURE, payload: err.message})
+        console.log(err.response);
+        dispatch({type: ADD_CLASS_FAILURE, payload: err.response})
     })
 }
 
@@ -97,7 +98,7 @@ export const deleteClass = id => dispatch => {
         dispatch({type: DELETE_CLASS_SUCCESS, payload: res.data});
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.response);
         dispatch({type: DELETE_CLASS_FAILURE, payload: err.message});
     })
 }
