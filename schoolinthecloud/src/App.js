@@ -48,6 +48,7 @@ function App() {
           <PrivateRoute exact path='/admin-dashboard:id' component={EditClass} />    
           <PrivateRoute exact path='/class-form' component={ClassForm}/>
           </Jumbotron>
+          
 
     </div>
   );
