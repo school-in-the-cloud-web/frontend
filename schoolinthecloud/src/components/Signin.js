@@ -58,8 +58,7 @@ function Signin(props){
 
     return(
     <div className='MainDiv'>
-        <h1>Cloud School</h1>
-        <h2>Sign in</h2>
+        {/* <h1>Cloud School</h1> */}
         <form className='formSignIn' onSubmit={submit}>
             <label>E-mail</label>
             <input onChange={change} value={formValues.email} type='text' name='email'/>
@@ -68,10 +67,12 @@ function Signin(props){
             <label></label>
             <input className='sesubmit' type='submit'/>
         </form>
+        <br />
+        <br />
         <footer>
-            <h2 className='randomq'>RANDOM QUOTE:</h2>
-            <h3><span>Author: </span>{quote.author}</h3>
-            <h3><span>Quote: </span>{quote.quote}</h3>
+            <h2 className='randomq'>RANDOM QUOTE</h2>
+            <p>Author: {quote.author}</p>
+            <p>Quote: {quote.quote}</p>
         </footer>
     </div>)
 }

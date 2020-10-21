@@ -92,8 +92,9 @@ const Signup = (props) => {
     
     return(
         <div className = 'MainDiv'> 
-            <h1>Cloud School</h1>
-            <h2>Sign Up</h2>
+            {/* <h1>Cloud School</h1> */}
+            <br />
+            <br />
             <form onSubmit={submit}>
                 <label  className='label'>First Name</label>
                 <p className='auth'>{errors.firstName}</p>
@@ -122,13 +123,17 @@ const Signup = (props) => {
                 <input  onChange={change} value={formValues.confirmPassword} type='password' name='confirmPassword'/>
                 <label className='label'>
                     <input disabled={disabled} type='submit'/>
+                    <br />
+                    <br />
                 </label>
             </form>
+            <br />
+            <br />
             <footer>
-                <h2 className='randomq'>RANDOM QUOTE:</h2>
-                <h3><span>Author: </span>{quote.author}</h3>
-                <h3><span>Quote: </span>{quote.quote}</h3>
-            </footer>
+            <h2 className='randomq'>RANDOM QUOTE:</h2>
+            <p>Author: {quote.author}</p>
+            <p>Quote: {quote.quote}</p>
+        </footer>
         </div>
     )
 }
