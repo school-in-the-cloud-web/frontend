@@ -6,7 +6,7 @@ import {useHistory} from 'react-router-dom';
 
 const initialFormValues = {
   name: '',
-  volunteer: 1,
+  volunteer: '',
   subject: '',
   date: '',
   description: ''
@@ -18,10 +18,10 @@ const ClassForm = (props) => {
   
   const [formValues, setFormValues] = useState(initialFormValues)
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    props.addClass(formValues);
-    push('/admin-dashboard')
+    await props.addClass({...formValues, volunteer: Number(formValues.volunteer)});
+    push('/admin-dashboard');
   }
 
   const handleChange = e => {
@@ -41,18 +41,12 @@ const ClassForm = (props) => {
         </Label>
       </FormGroup>
       <br />
-      {/* <FormGroup>
-        <Label htmlFor="volunteer">Instructor
-          <Input placeholder='Name of the volunteer/instructor' onChange={handleChange} type="select" name="volunteer" id="volunteer">
-
-          <option>Samuel L Jackson</option>
-          <option>Wile E. Coyote</option>
-          <option>Morticia Adams</option>
-          <option>Michael Jordan</option>
-          <option>Professor Moriarty</option>
+      <FormGroup>
+        <Label htmlFor="volunteer">Instructor ID
+          <Input placeholder='Name of the volunteer/instructor' onChange={handleChange} type="text" name="volunteer" id="volunteer">
           </Input>
         </Label>
-      </FormGroup> */}
+      </FormGroup>
       <br />
       <FormGroup>
         <Label for="subject">Subject

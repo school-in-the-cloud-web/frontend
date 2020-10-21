@@ -1,33 +1,30 @@
 import React, {useEffect} from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import {connect} from 'react-redux';
+import {volunteerFetchClasses} from '../actions'
 
 const VolunteerDashboard = (props) => {
 
     console.log(props.volunteerId)
 
     useEffect(() => {
-        axiosWithAuth()
-        .get('/user/volunteer')
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        props.volunteerFetchClasses()
     }, [])
 
     return (
         <div>
-            wow
+            {props.volunteerClasses.map(c => {
+                return <p>{c.name}</p>
+            })}
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        volunteerId: state.volunteerId,
+        volunteerId: state.currentVolunteerId,
+        volunteerClasses: state.volunteerClasses,
     }
 }
 
-export default connect(mapStateToProps, {})(VolunteerDashboard)
+export default connect(mapStateToProps, {volunteerFetchClasses})(VolunteerDashboard)

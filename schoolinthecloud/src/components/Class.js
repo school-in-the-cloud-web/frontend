@@ -16,10 +16,10 @@ const Class = (props) => {
     }) || {};
 
 
-    const handleDelete = e => {
+    const handleDelete = async e => {
         e.preventDefault();
-        props.deleteClass(currentClass.id);
-        push('/admin-dashboard')
+        await props.deleteClass(currentClass.id);
+        push('/admin-dashboard');
         
     }
 

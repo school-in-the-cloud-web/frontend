@@ -5,7 +5,7 @@ import axios from 'axios';
 import {useRouteMatch, Link} from 'react-router-dom';
 
 
-import {fetchAllClasses, addClass, deleteClass, editClass } from '../actions';
+import {fetchAllClasses, addClass, deleteClass, editClass, fetchVolunteers } from '../actions';
 
 import {connect} from 'react-redux';
 
@@ -15,6 +15,7 @@ export const AdminDashboard = (props) => {
 
     useEffect(()=>{
         props.fetchAllClasses()
+        props.fetchVolunteers()
         // axiosWithAuth()
         // .get('/user/student')
         // .then(res=>{
@@ -23,9 +24,11 @@ export const AdminDashboard = (props) => {
         // .catch(err=>{
         //     console.log(err)
         // })
+
     }, [])
 
     console.log(props.classes)
+    console.log(props.volunteers)
 
     return (
         <div>
@@ -43,8 +46,9 @@ const mapStateToProps = state => {
     return {
         isFetching: state.isFetching,
         error: state.error,
-        classes: state.classes
+        classes: state.classes,
+        volunteers: state.volunteers
     }
 }
 
-export default connect(mapStateToProps, {fetchAllClasses, addClass, editClass, deleteClass})(AdminDashboard);
+export default connect(mapStateToProps, {fetchAllClasses, addClass, editClass, deleteClass, fetchVolunteers})(AdminDashboard);

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
+import {axiosWithAuth} from './utils/axiosWithAuth'
 
 import {connect} from 'react-redux';
 import {logIn, logOut} from './actions';
@@ -21,7 +22,9 @@ import VolunteerDashboard from './components/VolunteerDashboard';
 function App(props) {
 
   const {push} = useHistory();
-  console.log(props.isLoggedIn)
+  console.log(props.isLoggedIn);
+
+
   
   return (
     <div style={{fontSize: '3rem'}}>
