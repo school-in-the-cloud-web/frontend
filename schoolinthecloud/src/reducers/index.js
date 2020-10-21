@@ -11,6 +11,7 @@ import {FETCH_ALL_CLASSES_START,
         DELETE_CLASS_SUCCESS,
         DELETE_CLASS_FAILURE,
         LOG_IN,
+        LOG_OUT,
         GET_VOLUNTEER_ID} from '../actions';
 
 
@@ -29,6 +30,11 @@ export const reducer = (state = initialState, action) => {
                  ...state,
                  isLoggedIn: true,
              }
+        case LOG_OUT:
+            return {
+                ...state,
+                isLoggedIn: false,
+            }
         case GET_VOLUNTEER_ID:
             return {
                 ...state,
