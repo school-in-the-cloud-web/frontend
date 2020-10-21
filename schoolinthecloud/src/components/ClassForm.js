@@ -42,8 +42,14 @@ const ClassForm = (props) => {
       </FormGroup>
       <br />
       <FormGroup>
-        <Label htmlFor="volunteer">Instructor ID
-          <Input placeholder='Name of the volunteer/instructor' onChange={handleChange} type="text" name="volunteer" id="volunteer">
+        <Label htmlFor="volunteer">Instructor
+          <Input type='select' placeholder='Name of the volunteer/instructor' onChange={handleChange} name="volunteer" value={formValues.volunteer} id="volunteer">
+            <option value=''>SELECT AN INSTRUCTOR</option>
+            {props.volunteers.map(vol => {
+              return(
+              <option key={vol.id} value={vol.id}>{vol.firstName} {vol.lastName}</option>
+              )
+            })}
           </Input>
         </Label>
       </FormGroup>
@@ -75,7 +81,8 @@ const mapStateToProps = state => {
     return {
       isFetching: state.isFetching,
       error: state.error,
-      classes: state.classes
+      classes: state.classes,
+      volunteers: state.volunteers,
     }
 }
 

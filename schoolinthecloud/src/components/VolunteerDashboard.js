@@ -14,7 +14,7 @@ const VolunteerDashboard = (props) => {
     return (
         <div>
             {props.volunteerClasses.map(c => {
-                return <p>{c.name}</p>
+                return <p key={c.id}>{c.name}</p>
             })}
         </div>
     )
