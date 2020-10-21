@@ -12,21 +12,27 @@ import {connect} from 'react-redux';
 
 export const AdminDashboard = (props) => {
 
-    const {url} = useRouteMatch();
-
 
     useEffect(()=>{
         props.fetchAllClasses()
+        // axiosWithAuth()
+        // .get('/user/student')
+        // .then(res=>{
+        //     console.log(res)
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // })
     }, [])
 
     console.log(props.classes)
 
     return (
         <div>
-            <Link to='/class-form'>ADD A CLASS</Link>
+            <Link to='/admin-dashboard/add'>ADD A CLASS</Link>
             {props.classes.map(c => (
-                <div>
-                    <Link to={`/${url}/${c.id}`}>{c.name}</Link>
+                <div key={c.id}>
+                    <Link to={`/tasks/${c.id}`}>{c.name}</Link>
                 </div>
             ))}
         </div>

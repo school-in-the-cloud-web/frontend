@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react'
+import {useHistory} from 'react-router-dom';
 import axios from 'axios'
 import './form.css'
+import jwt_decode from "jwt-decode";
+
 export default function Signin(){
     const initialFormValues = {
         email: '',
@@ -8,6 +11,8 @@ export default function Signin(){
     }
     const [formValues, setFormvalues] = useState(initialFormValues)
     const [quote, setQuote] = useState([])
+
+    const {push} = useHistory();
 
     const change = e => {
         const {checked, name, type, value} = e.target
@@ -17,7 +22,20 @@ export default function Signin(){
 
     const submit = e => {
         e.preventDefault()
-        console.log(formValues)
+        axios
+        .post('https://cloud-school-api.herokuapp.com/auth/login', formValues)
+        .then(res => {
+            const token = res.data.token;
+            const decoded = jwt_decode(token);
+            console.log(decoded)
+            localStorage.setItem('token', token);
+            localStorage.setItem('role', decoded.role)
+            push('/admin-dashboard')
+            
+        })
+        .catch(err => {
+            console.log(err.response);
+        })
     }
 
     useEffect(()=>{

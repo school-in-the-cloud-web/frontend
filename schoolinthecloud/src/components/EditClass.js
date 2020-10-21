@@ -4,6 +4,7 @@ import {useParams, useHistory} from 'react-router-dom';
 
 import {editClass, deleteClass} from '../actions';
 
+
 const EditClass = (props) => {
 
     const {push} = useHistory();
@@ -22,12 +23,12 @@ const EditClass = (props) => {
 
     const [formValues, setFormValues] = useState({
         name: currentClass.name,
-        volunteer: volunteer,
+        volunteer: 3,
         subject: currentClass.subject,
         date: currentClass.date,
     })
 
-    const [toggleDelete, setToggleDelete] = useState(false);
+
 
     const handleChange = e => {
         setFormValues({
@@ -38,73 +39,59 @@ const EditClass = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        editClass(id, formValues);
+        props.editClass(currentClass.id, formValues);
         push('/admin-dashboard');
     }
 
-    const handleDelete = e => {
-        e.preventDefault();
-        deleteClass(id);
-        push('admin-dashboard');
-    }
+
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
 
-                <label htmlFor='name'>
+                <label htmlFor='name'>NAME
                     <input
                     type='text'
                     name='name'
                     value={formValues.name}
                     onChange={handleChange} />
-                </label>
+                </label><br/>
                 
-                <label htmlFor='volunteer'>
+                {/* <label htmlFor='volunteer'>VOLUNTEER
                     <input
                     type='text'
                     name='volunteer'
                     value={formValues.volunteer}
                     onChange={handleChange} />
-                </label>
+                </label><br/> */}
 
-                <label htmlFor='subject'>
+                <label htmlFor='subject'>SUBJECT
                     <input
                     type='text'
                     name='subject'
                     value={formValues.subject}
                     onChange={handleChange} />
-                </label>
+                </label><br/>
 
-                <label htmlFor='description'>
+                <label htmlFor='description'>DESCRIPTION
                     <input
                     type='text'
                     name='description'
                     value={formValues.description}
                     onChange={handleChange} />
-                </label>
+                </label><br/>
 
-                <label htmlFor='date'>
+                <label htmlFor='date'>DATE
                     <input
                     type='text'
                     name='date'
                     value={formValues.date}
                     onChange={handleChange} />
-                </label>
+                </label><br/>
                 
                 <button type='submit'>SUBMIT CHANGES</button>
 
             </form>
-            <button onClick={() => {setToggleDelete(!toggleDelete)}}>DELETE CLASS</button>
-            {toggleDelete && 
-            <div>
-                <p>ARE YOU SURE?</p>
-                <button onClick={handleDelete}>YES</button>
-                <button onClick={() => {
-                    setToggleDelete(!toggleDelete)
-                }}>NO</button>
-            </div>
-            }
         </div>
     )
 }

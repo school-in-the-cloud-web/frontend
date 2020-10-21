@@ -1,6 +1,8 @@
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 
+
+
 // ADMIN ACTIONS
 
 export const FETCH_ALL_CLASSES_START = 'FETCH_ALL_CLASSES_START';
@@ -44,6 +46,7 @@ export const UNENROLL_CLASS_SUCCESS = 'UNENROLL_CLASS_SUCCESS';
 export const UNENROLL_CLASS_FAILURE = 'UNENROLL_CLASS_FAILURE';
 
 
+
 //ADMIN
 
 export const fetchAllClasses = () => dispatch => {
@@ -52,7 +55,7 @@ export const fetchAllClasses = () => dispatch => {
     .get('/tasks')
     .then(res => {
         console.log(res)
-        // dispatch({type: FETCH_ALL_CLASSES_SUCCESS, payload: res.data})
+        dispatch({type: FETCH_ALL_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err => {
         console.log(err);
@@ -61,6 +64,7 @@ export const fetchAllClasses = () => dispatch => {
 }
 
 export const addClass = newClass => dispatch => {
+    console.log(newClass)
     dispatch({type: ADD_CLASS_START});
     axiosWithAuth()
     .post('/tasks', newClass)
@@ -69,8 +73,8 @@ export const addClass = newClass => dispatch => {
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
     })
     .catch(err => {
-        console.log(err);
-        dispatch({type: ADD_CLASS_FAILURE, payload: err.message})
+        console.log(err.response);
+        dispatch({type: ADD_CLASS_FAILURE, payload: err.response})
     })
 }
 
@@ -97,7 +101,7 @@ export const deleteClass = id => dispatch => {
         dispatch({type: DELETE_CLASS_SUCCESS, payload: res.data});
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.response);
         dispatch({type: DELETE_CLASS_FAILURE, payload: err.message});
     })
 }
