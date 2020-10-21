@@ -92,9 +92,10 @@ const Signup = (props) => {
     
     return(
         <div className = 'MainDiv'> 
-            <h1>Cloud School</h1>
-            <h2>Sign Up</h2>
+            {/* <br />
+            <br /> */}
             <form onSubmit={submit}>
+            <img id='image' src='https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg' />
                 <label  className='label'>First Name</label>
                 <p className='auth'>{errors.firstName}</p>
                 <input onChange={change} value={formValues.firstName} type='text' name='firstName'/>
@@ -106,12 +107,12 @@ const Signup = (props) => {
                 <input  onChange={change} value={formValues.email} type='text' name='email'/>
                 <label className='label'>Role</label>
                 <p className='auth'>{errors.role}</p>
-                <select  onChange={change} value={formValues.role} name='role'>
+                <select className='role' onChange={change} value={formValues.role} name='role'>
                     <option value=''>---Select Role---</option>
                     <option value='student'>Student</option>
                     <option value='volunteer'>Volunteer</option>
                 </select>
-                <label> Country</label>
+                <label className='label'> Country</label>
                 <p className='auth'>{errors.country}</p>
                 <input onChange={change} value={formValues.country} type='text' name='country'/>
                 <label className='label'>Password</label>
@@ -122,13 +123,16 @@ const Signup = (props) => {
                 <input  onChange={change} value={formValues.confirmPassword} type='password' name='confirmPassword'/>
                 <label className='label'>
                     <input disabled={disabled} type='submit'/>
+                    <br />
+                    <br />
                 </label>
             </form>
+            <br />
             <footer>
-                <h2 className='randomq'>RANDOM QUOTE:</h2>
-                <h3><span>Author: </span>{quote.author}</h3>
-                <h3><span>Quote: </span>{quote.quote}</h3>
-            </footer>
+            <h2 className='randomq'>RANDOM QUOTE:</h2>
+            <p className='randomq'>Quote: {quote.quote}</p>
+            <p className='randomq'>Author: {quote.author}</p>
+        </footer>
         </div>
     )
 }
