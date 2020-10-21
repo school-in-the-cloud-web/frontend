@@ -3,6 +3,7 @@ import './form.css'
 import Schema from './Schema'
 import * as yup from 'yup'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom';
 
 export default function Signup(){
     const initalTValue = true
@@ -19,6 +20,8 @@ export default function Signup(){
     const [errors, setErrors] = useState(initialFormValues)
     const [formValues, setFormvalues] = useState(initialFormValues)
     const [quote, setQuote] = useState([])
+
+    const {push} = useHistory();
 
     useEffect(()=>{
         axios.get('http://quotes.stormconsultancy.co.uk/random.json')
@@ -38,6 +41,15 @@ export default function Signup(){
     const submit = e => {
         e.preventDefault()
         console.log(formValues)
+        axios.post('https://cloud-school-api.herokuapp.com/auth/register', formValues)
+        .then(res=>{
+            console.log(res);
+            push('/signin')
+
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
         
     }
 

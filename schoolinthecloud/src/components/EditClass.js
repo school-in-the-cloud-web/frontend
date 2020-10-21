@@ -23,9 +23,10 @@ const EditClass = (props) => {
 
     const [formValues, setFormValues] = useState({
         name: currentClass.name,
-        volunteer: 3,
+        volunteer: currentClass.volunteer,
         subject: currentClass.subject,
         date: currentClass.date,
+        description: currentClass.description,
     })
 
 
@@ -57,13 +58,13 @@ const EditClass = (props) => {
                     onChange={handleChange} />
                 </label><br/>
                 
-                {/* <label htmlFor='volunteer'>VOLUNTEER
+                <label htmlFor='volunteer'>VOLUNTEER
                     <input
                     type='text'
                     name='volunteer'
                     value={formValues.volunteer}
                     onChange={handleChange} />
-                </label><br/> */}
+                </label><br/>
 
                 <label htmlFor='subject'>SUBJECT
                     <input

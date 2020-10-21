@@ -3,8 +3,10 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios'
 import './form.css'
 import jwt_decode from "jwt-decode";
+import {connect} from 'react-redux';
+import {logIn} from '../actions';
 
-export default function Signin(){
+function Signin(props){
     const initialFormValues = {
         email: '',
         password: '',
@@ -28,9 +30,16 @@ export default function Signin(){
             const token = res.data.token;
             const decoded = jwt_decode(token);
             console.log(decoded)
+            props.logIn();
             localStorage.setItem('token', token);
             localStorage.setItem('role', decoded.role)
-            push('/admin-dashboard')
+            if (localStorage.getItem('role') === 'volunteer') {
+                push('/volunteer-dashboard')
+            } else if (localStorage.getItem('role') === 'student') {
+                push('/student-dashboard')
+            } else if (localStorage.getItem('role') === 'admin') {
+                push('/admin-dashboard')
+            }
             
         })
         .catch(err => {
@@ -65,3 +74,5 @@ export default function Signin(){
         </footer>
     </div>)
 }
+
+export default connect(null, {logIn})(Signin)

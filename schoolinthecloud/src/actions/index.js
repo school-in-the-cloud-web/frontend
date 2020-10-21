@@ -1,6 +1,8 @@
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
+//ALL USER ACTIONS
 
+export const LOG_IN = 'LOG_IN';
 
 
 // ADMIN ACTIONS
@@ -87,7 +89,7 @@ export const editClass = (id, info) => dispatch => {
         dispatch({type: EDIT_CLASS_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.response);
         dispatch({type: EDIT_CLASS_FAILURE, payload: err.message})
     })
 }
@@ -104,6 +106,10 @@ export const deleteClass = id => dispatch => {
         console.log(err.response);
         dispatch({type: DELETE_CLASS_FAILURE, payload: err.message});
     })
+}
+
+export const logIn = () => dispatch => {
+    dispatch({type: LOG_IN});
 }
 
 

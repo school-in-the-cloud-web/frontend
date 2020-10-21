@@ -1,48 +1,37 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
 
+import {connect} from 'react-redux';
+import {logIn} from './actions';
+
 import Signup from './components/Signup'
 import Signin from './components/Signin'
-import {Route, Link} from 'react-router-dom'
+import {Route, Link, useHistory} from 'react-router-dom'
 import ClassForm from './components/ClassForm';
 import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
 import Class from './components/Class'
 
 import axios from 'axios';
+import VolunteerDashboard from './components/VolunteerDashboard';
 
 
-function App() {
+function App(props) {
 
-  // useEffect(()=>{
-  //   axios.post('https://cloud-school-api.herokuapp.com/auth/login', {email: "starullo@email.com", password: "gRh06ZYT1gSB"})
-  //   .then(res=>{
-  //     console.log(res);
-  //     localStorage.setItem('token', res.data.token);
-  //   })
-  //   .catch(err => {
-  //     console.log(err.response)
-  //   })
-  //   axios.get('https://cloud-school-api.herokuapp.com/tasks')
-  //   .then(res=>{
-  //     console.log(res)
-  //   })
-  //   .catch(err=>{
-  //     console.log(err)
-  //   })
-  // }, [])
+  const {push} = useHistory();
+  console.log(props.isLoggedIn)
   
   return (
     <div>
 
       <Jumbotron>
-        <Link to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : 'volunteer-dashboard'}>DASHBOARD</Link>
+  <Link to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : localStorage.getItem('role') === 'volunteer' ? '/volunteer-dashboard' : ''}>{localStorage.getItem('role') ? 'DASHBOARD' : ''}</Link>
         <Link to='/signin'>LOG IN</Link>
         <Link to='/signup'>SIGN UP</Link>
         <Link to='/'>HOME</Link>
-        <a href='#' onClick={() => {localStorage.removeItem('token'); localStorage.removeItem('role')}}>LOG OUT</a>
+        {props.isLoggedIn && <a href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); push('/signin')}}>LOG OUT</a>}
 
         <Route path='/'>
         <div className="jumbotron">
@@ -57,6 +46,7 @@ function App() {
           <PrivateRoute exact path='/admin-dashboard/edit/:id' component={EditClass} />    
           <PrivateRoute exact path='/admin-dashboard/add' component={ClassForm}/>
           <PrivateRoute exact path='/tasks/:id' component={Class} />
+          <PrivateRoute exact path='/volunteer-dashboard' component={VolunteerDashboard} />
           </Jumbotron>
           
 
@@ -64,4 +54,10 @@ function App() {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps, {})(App);
