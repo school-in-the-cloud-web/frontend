@@ -30,7 +30,13 @@ export default function Signin(){
             console.log(decoded)
             localStorage.setItem('token', token);
             localStorage.setItem('role', decoded.role)
-            push('/admin-dashboard')
+            if (localStorage.getItem('role') === 'volunteer') {
+                push('/volunteer-dashboard')
+            } else if (localStorage.getItem('role') === 'student') {
+                push('/student-dashboard')
+            } else if (localStorage.getItem('role') === 'admin') {
+                push('/admin-dashboard')
+            }
             
         })
         .catch(err => {

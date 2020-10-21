@@ -87,7 +87,7 @@ export const editClass = (id, info) => dispatch => {
         dispatch({type: EDIT_CLASS_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.response);
         dispatch({type: EDIT_CLASS_FAILURE, payload: err.message})
     })
 }

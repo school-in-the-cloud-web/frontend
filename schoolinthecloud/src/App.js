@@ -12,6 +12,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import Class from './components/Class'
 
 import axios from 'axios';
+import VolunteerDashboard from './components/VolunteerDashboard';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
     <div>
 
       <Jumbotron>
-        <Link to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : 'volunteer-dashboard'}>DASHBOARD</Link>
+  <Link to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : 'volunteer-dashboard'}>{localStorage.getItem('role') ? 'LOG OUT' : ''}</Link>
         <Link to='/signin'>LOG IN</Link>
         <Link to='/signup'>SIGN UP</Link>
         <Link to='/'>HOME</Link>
@@ -57,6 +58,7 @@ function App() {
           <PrivateRoute exact path='/admin-dashboard/edit/:id' component={EditClass} />    
           <PrivateRoute exact path='/admin-dashboard/add' component={ClassForm}/>
           <PrivateRoute exact path='/tasks/:id' component={Class} />
+          <PrivateRoute exact path='/volunteer-dashboard' component={VolunteerDashboard} />
           </Jumbotron>
           
 

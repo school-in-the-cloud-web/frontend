@@ -23,9 +23,10 @@ const EditClass = (props) => {
 
     const [formValues, setFormValues] = useState({
         name: currentClass.name,
-        volunteer: 3,
+        volunteer: currentClass.volunteer,
         subject: currentClass.subject,
         date: currentClass.date,
+        description: currentClass.description,
     })
 
 
