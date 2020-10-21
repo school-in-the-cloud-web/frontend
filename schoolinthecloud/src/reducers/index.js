@@ -9,17 +9,24 @@ import {FETCH_ALL_CLASSES_START,
         EDIT_CLASS_FAILURE,
         DELETE_CLASS_START,
         DELETE_CLASS_SUCCESS,
-        DELETE_CLASS_FAILURE} from '../actions';
+        DELETE_CLASS_FAILURE,
+        LOG_IN} from '../actions';
 
 
 const initialState = {
     classes: [],
     isFetching: false,
     error: '',
+    isLoggedIn: false,
 }
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case LOG_IN:
+             return {
+                 ...state,
+                 isLoggedIn: true,
+             }
         case FETCH_ALL_CLASSES_START:
             return {
                 ...state,
