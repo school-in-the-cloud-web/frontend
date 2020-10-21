@@ -12,15 +12,31 @@ import {FETCH_ALL_CLASSES_START,
         DELETE_CLASS_FAILURE,
         LOG_IN,
         LOG_OUT,
-        GET_VOLUNTEER_ID} from '../actions';
+        GET_VOLUNTEER_ID,
+        FETCH_VOLUNTEERS_START,
+        FETCH_VOLUNTEERS_SUCCESS,
+        FETCH_VOLUNTEERS_FAILURE,
+        STUDENT_FETCH_CLASSES_START,
+        STUDENT_FETCH_CLASSES_SUCCESS,
+        STUDENT_FETCH_CLASSES_FAILURE,
+        VOLUNTEER_FETCH_CLASSES_START,
+        VOLUNTEER_FETCH_CLASSES_SUCCESS,
+        VOLUNTEER_FETCH_CLASSES_FAILURE} from '../actions';
 
 
 const initialState = {
+    //admin
     classes: [],
+    volunteers: [],
+    //volunteer
+    currentVolunteerId: '',
+    volunteerClasses: [],
+    //student
+    studentClasses: [],
+    //all
     isFetching: false,
     error: '',
     isLoggedIn: false,
-    volunteerId: '',
 }
 
 export const reducer = (state = initialState, action) => {
@@ -34,6 +50,23 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: false,
+            }
+        case VOLUNTEER_FETCH_CLASSES_START:
+            return {
+                ...state,
+                isFetching: true,
+            }
+        case VOLUNTEER_FETCH_CLASSES_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                volunteerClasses: action.payload,
+            }
+        case VOLUNTEER_FETCH_CLASSES_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload,
             }
         case GET_VOLUNTEER_ID:
             return {
@@ -106,6 +139,40 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
                 error: action.payload
+            }
+        case FETCH_VOLUNTEERS_START:
+            return {
+                ...state,
+                isFetching: true,
+            }
+        case FETCH_VOLUNTEERS_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                volunteers: action.payload,
+            }
+        case FETCH_VOLUNTEERS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload,
+            }
+        case STUDENT_FETCH_CLASSES_START:
+            return {
+                ...state,
+                isFetching: true,
+            }
+        case STUDENT_FETCH_CLASSES_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                studentClasses: action.payload
+            }
+        case STUDENT_FETCH_CLASSES_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload,
             }
         default:
             return state;

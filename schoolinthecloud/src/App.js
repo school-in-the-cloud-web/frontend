@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
+import {axiosWithAuth} from './utils/axiosWithAuth'
 
 import {connect} from 'react-redux';
 import {logIn, logOut} from './actions';
@@ -13,7 +14,11 @@ import ClassForm from './components/ClassForm';
 import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
 import Class from './components/Class'
+
+import StudentDashboard from './components/StudentDashboard';
+
 import Footer from './components/Footer'
+
 
 import axios from 'axios';
 import VolunteerDashboard from './components/VolunteerDashboard';
@@ -22,7 +27,9 @@ import VolunteerDashboard from './components/VolunteerDashboard';
 function App(props) {
 
   const {push} = useHistory();
-  console.log(props.isLoggedIn)
+  console.log(props.isLoggedIn);
+
+
   
   return (
     <div style={{fontSize: '3rem'}}>
@@ -50,6 +57,7 @@ function App(props) {
           <PrivateRoute exact path='/admin-dashboard/add' component={ClassForm}/>
           <PrivateRoute exact path='/tasks/:id' component={Class} />
           <PrivateRoute exact path='/volunteer-dashboard' component={VolunteerDashboard} />
+          <PrivateRoute exact path='/student-dashboard' component={StudentDashboard} />
           </Jumbotron>
           <Footer />
 

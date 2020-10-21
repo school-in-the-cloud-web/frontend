@@ -15,11 +15,19 @@ const Class = (props) => {
         return c.id == id;
     }) || {};
 
+    const volunteer = props.volunteers.find(c=>{
+         return c.id == currentClass.volunteer_id
+     }) || {};
 
-    const handleDelete = e => {
+     console.log(volunteer)
+    console.log(props.volunteers)
+    console.log(currentClass)
+
+
+    const handleDelete = async e => {
         e.preventDefault();
-        props.deleteClass(currentClass.id);
-        push('/admin-dashboard')
+        await props.deleteClass(currentClass.id);
+        push('/admin-dashboard');
         
     }
 
@@ -28,7 +36,7 @@ const Class = (props) => {
             <p>CLASS NAME: {currentClass.name}</p>
             <p>SUBJECT: {currentClass.subject}</p>
             <p>DESCRIPTION: {currentClass.description}</p>
-            {/* <p>INSTRUCTOR: {currentClass.instructor}</p> */}
+            <p>INSTRUCTOR: {volunteer.firstName} {volunteer.lastName}</p>
             <p>START DATE: {currentClass.date}</p>
         
         <button onClick={() => {
@@ -51,6 +59,7 @@ const Class = (props) => {
 const mapStateToProps = state => {
     return {
         classes: state.classes,
+        volunteers: state.volunteers,
 
     }
 }
