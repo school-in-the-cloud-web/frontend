@@ -23,6 +23,10 @@ export const DELETE_CLASS_START = 'DELETE_CLASS_START';
 export const DELETE_CLASS_SUCCESS = 'DELETE_CLASS_SUCCESS';
 export const DELETE_CLASS_FAILURE = 'DELETE_CLASS_FAILURE';
 
+//VOLUNTEER ACTIONS
+
+export  const GET_VOLUNTEER_ID = 'GET_VOLUNTEER_ID';
+
 
 
 // TEACHER/STUDENT ACTIONS
@@ -110,6 +114,10 @@ export const deleteClass = id => dispatch => {
 
 export const logIn = () => dispatch => {
     dispatch({type: LOG_IN});
+}
+
+export const getVolunteerId = id => dispatch => {
+    dispatch({type: GET_VOLUNTEER_ID, payload: id});
 }
 
 

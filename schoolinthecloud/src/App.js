@@ -24,12 +24,12 @@ function App(props) {
   console.log(props.isLoggedIn)
   
   return (
-    <div>
+    <div style={{fontSize: '3rem'}}>
 
       <Jumbotron>
-  <Link to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : localStorage.getItem('role') === 'volunteer' ? '/volunteer-dashboard' : ''}>{localStorage.getItem('role') ? 'DASHBOARD' : ''}</Link>
-        <Link to='/signin'>LOG IN</Link>
-        <Link to='/signup'>SIGN UP</Link>
+        {props.isLoggedIn && <Link to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : localStorage.getItem('role') === 'volunteer' ? '/volunteer-dashboard' : ''}>DASHBOARD</Link>}
+        {!props.isLoggedIn && <Link to='/signin'>LOG IN</Link>}
+        {!props.isLoggedIn && <Link to='/signup'>SIGN UP</Link>}
         <Link to='/'>HOME</Link>
         {props.isLoggedIn && <a href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); push('/signin')}}>LOG OUT</a>}
 
