@@ -58,21 +58,24 @@ function Signin(props){
 
     return(
     <div className='MainDiv'>
-        {/* <h1>Cloud School</h1> */}
         <form className='formSignIn' onSubmit={submit}>
+            <br />
+        <img id='image' src='https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg' />
             <label>E-mail</label>
             <input onChange={change} value={formValues.email} type='text' name='email'/>
             <label>Password</label>
             <input onChange={change} value={formValues.password} type='password' name='password'/>
+            <br />
             <label></label>
             <input className='sesubmit' type='submit'/>
+            <br />
         </form>
         <br />
         <br />
         <footer>
             <h2 className='randomq'>RANDOM QUOTE</h2>
-            <p>Author: {quote.author}</p>
-            <p>Quote: {quote.quote}</p>
+            <p className='randomq'>Quote: {quote.quote}</p>
+            <p className='randomq'>Author: {quote.author}</p>
         </footer>
     </div>)
 }

@@ -28,18 +28,19 @@ html{font-size:62.5%;}
 
 .MainDiv{
     width: auto;
-    height: 100vh;
+    /* height: 125vh; */
     /* background-color: #42BFDD; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 25px;
-    text-shadow: 5px 5px 7px gray;
+    text-shadow: 1px 1px 1px black;
 }
 
 p {
-    font-size: 1rem;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1{
@@ -52,19 +53,35 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg');
+    /* background: url('https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg'); */
     width: 50%;
-    height:100vh;
+    /* height:100vh; */
     margin: 1rem auto;
     font-size: 2rem;
     flex-direction: column;
     box-shadow: 10px 10px 8px gray;
     border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+#image {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    right: -9999px;
+    bottom: -9999px;
+    margin: auto;
+    z-index: -100;
+    width: 300%;
+    height: 100%;
+    opacity: 50%;
 }
 
 
 .label{
     margin-top:1rem ;
+    font-family: 'Montserrat', sans-serif;
 }
 
 footer {
@@ -72,20 +89,24 @@ footer {
         flex-direction: column;
         justify-content: space;
         align-content: center; */
-    border: 10px solid black;
     /* background: linear-gradient(to bottom right,white 0%,  rgb(104, 201, 250)1 00%); */
     background-color: #A1A4A5;
     box-shadow: 10px 10px 8px rgb(104, 201, 250);
     border-radius: 10px;
-    padding: 25%;
+    padding: 25px;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 span{
     font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 .randomq{
+    padding: 10px;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
 }
 .auth{
     color:red;
@@ -93,8 +114,10 @@ span{
 }
 .sesubmit{
     margin-top: 5px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .formSignIn{
     width:40%;
+    font-family: 'Montserrat', sans-serif;
 }
