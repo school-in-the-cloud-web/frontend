@@ -13,6 +13,7 @@ export default function Signup(){
         confirmPassword: '',
         email: '',
         role: '',
+        country: '',
     }
     const [disabled, setDisabled] = useState(initalTValue)
     const [errors, setErrors] = useState(initialFormValues)
@@ -80,6 +81,9 @@ export default function Signup(){
                     <option value='student'>Student</option>
                     <option value='volunteer'>Volunteer</option>
                 </select>
+                <label> Country</label>
+                <p className='auth'>{errors.country}</p>
+                <input onChange={change} value={formValues.country} type='text' name='country'/>
                 <label className='label'>Password</label>
                 <p className='auth'>{errors.password}</p>
                 <input  onChange={change} value={formValues.password} type='password' name='password'/>
