@@ -3,6 +3,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 //ALL USER ACTIONS
 
 export const LOG_IN = 'LOG_IN';
+export const LOG_OUT = 'LOG_OUT';
 
 
 // ADMIN ACTIONS
@@ -114,6 +115,10 @@ export const deleteClass = id => dispatch => {
 
 export const logIn = () => dispatch => {
     dispatch({type: LOG_IN});
+}
+
+export const logOut = () => dispatch => {
+    dispatch({type: LOG_OUT})
 }
 
 export const getVolunteerId = id => dispatch => {

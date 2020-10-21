@@ -4,7 +4,7 @@ import AdminDashboard from './components/AdminDashboard';
 import './App.css';
 
 import {connect} from 'react-redux';
-import {logIn} from './actions';
+import {logIn, logOut} from './actions';
 
 import Signup from './components/Signup'
 import Signin from './components/Signin'
@@ -31,7 +31,7 @@ function App(props) {
         {!props.isLoggedIn && <Link to='/signin'>LOG IN</Link>}
         {!props.isLoggedIn && <Link to='/signup'>SIGN UP</Link>}
         <Link to='/'>HOME</Link>
-        {props.isLoggedIn && <a href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); push('/signin')}}>LOG OUT</a>}
+        {props.isLoggedIn && <a href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); props.logOut(); push('/signin')}}>LOG OUT</a>}
 
         <Route path='/'>
         <div className="jumbotron">
@@ -60,4 +60,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, {logOut})(App);
