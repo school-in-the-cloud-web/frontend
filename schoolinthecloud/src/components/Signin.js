@@ -4,7 +4,7 @@ import axios from 'axios'
 import './form.css'
 import jwt_decode from "jwt-decode";
 import {connect} from 'react-redux';
-import {logIn} from '../actions';
+import {logIn, getVolunteerId} from '../actions';
 
 function Signin(props){
     const initialFormValues = {
@@ -34,6 +34,7 @@ function Signin(props){
             localStorage.setItem('token', token);
             localStorage.setItem('role', decoded.role)
             if (localStorage.getItem('role') === 'volunteer') {
+                props.getVolunteerId(decoded.sub)
                 push('/volunteer-dashboard')
             } else if (localStorage.getItem('role') === 'student') {
                 push('/student-dashboard')
@@ -75,4 +76,4 @@ function Signin(props){
     </div>)
 }
 
-export default connect(null, {logIn})(Signin)
+export default connect(null, {logIn, getVolunteerId})(Signin)

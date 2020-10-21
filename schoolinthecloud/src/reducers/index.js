@@ -10,7 +10,8 @@ import {FETCH_ALL_CLASSES_START,
         DELETE_CLASS_START,
         DELETE_CLASS_SUCCESS,
         DELETE_CLASS_FAILURE,
-        LOG_IN} from '../actions';
+        LOG_IN,
+        GET_VOLUNTEER_ID} from '../actions';
 
 
 const initialState = {
@@ -18,15 +19,21 @@ const initialState = {
     isFetching: false,
     error: '',
     isLoggedIn: false,
+    volunteerId: '',
 }
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case LOG_IN:
-             return {
+            return {
                  ...state,
                  isLoggedIn: true,
              }
+        case GET_VOLUNTEER_ID:
+            return {
+                ...state,
+                volunteerId: action.payload
+            }
         case FETCH_ALL_CLASSES_START:
             return {
                 ...state,

@@ -4,8 +4,11 @@ import Schema from './Schema'
 import * as yup from 'yup'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logIn, getVolunteerId} from '../actions';
+import jwt_decode from 'jwt-decode'
 
-export default function Signup(){
+const Signup = (props) => {
     const initalTValue = true
     const initialFormValues = {
         firstName: '',
@@ -43,8 +46,23 @@ export default function Signup(){
         console.log(formValues)
         axios.post('https://cloud-school-api.herokuapp.com/auth/register', formValues)
         .then(res=>{
-            console.log(res);
-            push('/signin')
+            axios
+            .post('https://cloud-school-api.herokuapp.com/auth/login', {email: formValues.email, password: formValues.password})
+            .then(res => {
+                const token = res.data.token;
+                const decoded = jwt_decode(token);
+                props.logIn();
+                localStorage.setItem('token', token);
+                localStorage.setItem('role', decoded.role)
+                if (localStorage.getItem('role') === 'volunteer') {
+                    props.getVolunteerId(decoded.sub)
+                    push('/volunteer-dashboard')
+                } else if (localStorage.getItem('role') === 'student') {
+                    push('/student-dashboard')
+                } else if (localStorage.getItem('role') === 'admin') {
+                    push('/admin-dashboard')
+                }
+            })
 
         })
         .catch(err => {
@@ -114,3 +132,5 @@ export default function Signup(){
         </div>
     )
 }
+
+export default connect(null, {logIn, getVolunteerId})(Signup);
