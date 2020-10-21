@@ -189,11 +189,11 @@ export const studentFetchClasses = () => dispatch => {
     .get('/user/student')
     .then(res=>{
         console.log(res)
-        dispatch({type: STUDENT_FETCH_CLASSES_SUCCESS, payload: res.data})
+        // dispatch({type: STUDENT_FETCH_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err=>{
-        console.log(err)
-        dispatch({type: STUDENT_FETCH_CLASSES_FAILURE, payload: err.message})
+        console.log(err.response)
+        // dispatch({type: STUDENT_FETCH_CLASSES_FAILURE, payload: err.message})
     })
 }
 // STUDENT/TEACHER

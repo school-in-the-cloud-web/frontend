@@ -5,13 +5,13 @@ import {studentFetchClasses} from '../actions';
 const StudentDashboard = (props) => {
 
     console.log(props.studentClasses);
-    
+
     useEffect(()=> {
         props.studentFetchClasses()
     })
     return (
         <div>
-            
+            wow
         </div>
     )
 }

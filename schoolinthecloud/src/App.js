@@ -14,6 +14,7 @@ import ClassForm from './components/ClassForm';
 import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
 import Class from './components/Class'
+import StudentDashboard from './components/StudentDashboard';
 
 import axios from 'axios';
 import VolunteerDashboard from './components/VolunteerDashboard';
@@ -50,6 +51,7 @@ function App(props) {
           <PrivateRoute exact path='/admin-dashboard/add' component={ClassForm}/>
           <PrivateRoute exact path='/tasks/:id' component={Class} />
           <PrivateRoute exact path='/volunteer-dashboard' component={VolunteerDashboard} />
+          <PrivateRoute exact path='/student-dashboard' component={StudentDashboard} />
           </Jumbotron>
           
 
