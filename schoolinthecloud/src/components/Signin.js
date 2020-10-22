@@ -60,9 +60,8 @@ function Signin(props){
     },[])
 
     return(
-        
+        <>
     <div className='MainDiv'>
-        <MissionStatement/>
         <br/>
         <form className='formSignIn' onSubmit={submit}>
             <br />
@@ -85,6 +84,7 @@ function Signin(props){
             <p className='randomq'>Author: {quote.author}</p>
         </footer>
     </div>
+    </>
     )
 }
 
