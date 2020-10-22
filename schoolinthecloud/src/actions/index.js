@@ -135,7 +135,7 @@ export const volunteerFetchClasses = () => dispatch => {
         dispatch({type: VOLUNTEER_FETCH_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err=>{
-        console.log(err);
+        console.log(err.message);
         dispatch({type: VOLUNTEER_FETCH_CLASSES_FAILURE, payload: err.message});
     })
 }
