@@ -56,7 +56,7 @@ export const AdminDashboard = (props) => {
             ))}
             </Div>
             {props.isFetching && <p>One moment please...</p>}
-            {props.error && <p>We weren't able to retrieve the data you requested: {props.error}</p>}
+            {props.error && <p style={{color: 'red'}}>{props.error}</p>}
         </div>
     )
 }
