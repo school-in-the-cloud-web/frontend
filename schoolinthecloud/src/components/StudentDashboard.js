@@ -55,7 +55,8 @@ const StudentDashboard = (props) => {
         e.preventDefault();
         setToggleSearch(true)
         setSearched(props.studentClasses.filter(c => {
-            const subArr = c.class_subject.split(/\W/).map(subject=>subject.toLowerCase())
+            const subArr = c.class_subject.split(/\W/).filter(x=>x).map(subject=>subject.toLowerCase())
+            console.log(subArr)
             return subArr.some(sub => {
                 return keyword.toLowerCase().split(/\W/).some(word=>{
                     return word === sub
