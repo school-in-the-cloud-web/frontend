@@ -59,11 +59,14 @@ const EditClass = (props) => {
                 </label><br/>
                 
                 <label htmlFor='volunteer'>VOLUNTEER
-                    <input
-                    type='text'
-                    name='volunteer'
-                    value={formValues.volunteer}
-                    onChange={handleChange} />
+                    <select placeholder='Name of the volunteer/instructor' onChange={handleChange} name="volunteer" value={formValues.volunteer} id="volunteer">
+                    <option value=''>SELECT AN INSTRUCTOR</option>
+                        {props.volunteers.map(vol => {
+                            return(
+                            <option key={vol.id} value={vol.id}>{vol.firstName} {vol.lastName}</option>
+                            )
+                        })}
+                    </select>
                 </label><br/>
 
                 <label htmlFor='subject'>SUBJECT
@@ -102,6 +105,7 @@ const mapStateToProps = state => {
         classes: state.classes,
         error: state.error,
         isFetching: state.isFetching,
+        volunteers: state.volunteers,
     }
 }
 

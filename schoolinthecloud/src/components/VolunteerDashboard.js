@@ -5,7 +5,7 @@ import {volunteerFetchClasses} from '../actions'
 
 const VolunteerDashboard = (props) => {
 
-    console.log(props.volunteerId)
+    console.log(props.volunteerClasses)
 
     useEffect(() => {
         props.volunteerFetchClasses()

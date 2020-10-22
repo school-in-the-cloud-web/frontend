@@ -88,7 +88,7 @@ export const addClass = newClass => dispatch => {
     dispatch({type: ADD_CLASS_START});
     axiosWithAuth()
     .post('/tasks', newClass)
-    .then(res => {
+    .then(async res => {
         console.log(res);
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
     })
@@ -145,8 +145,8 @@ export const fetchVolunteers = () => dispatch => {
 
 //ALL
 
-export const logIn = () => dispatch => {
-    dispatch({type: LOG_IN});
+export const logIn = role => dispatch => {
+    dispatch({type: LOG_IN, payload: role});
 }
 
 export const logOut = () => dispatch => {

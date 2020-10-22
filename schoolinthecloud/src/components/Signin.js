@@ -32,12 +32,12 @@ function Signin(props){
             const token = res.data.token;
             const decoded = jwt_decode(token);
             console.log(decoded)
-            props.logIn();
+            props.logIn(decoded.role);
             localStorage.setItem('token', token);
-            localStorage.setItem('role', decoded.role)
+            localStorage.setItem('role', decoded.role);
+            localStorage.setItem('loggedIn', 'true')
             if (localStorage.getItem('role') === 'volunteer') {
-                props.getVolunteerId(decoded.sub)
-                push('/volunteer-dashboard')
+                push('volunteer-dashboard')
             } else if (localStorage.getItem('role') === 'student') {
                 push('/student-dashboard')
             } else if (localStorage.getItem('role') === 'admin') {
