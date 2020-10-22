@@ -93,7 +93,6 @@ export const addClass = newClass => dispatch => {
         const {push} = useHistory();
         console.log(res);
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
-        push('/admin-dashboard')
     })
     .catch(err => {
         console.log(err.response);
@@ -192,11 +191,11 @@ export const studentFetchClasses = () => dispatch => {
     .get('/user/student')
     .then(res=>{
         console.log(res)
-        // dispatch({type: STUDENT_FETCH_CLASSES_SUCCESS, payload: res.data})
+        dispatch({type: STUDENT_FETCH_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err=>{
         console.log(err.response)
-        // dispatch({type: STUDENT_FETCH_CLASSES_FAILURE, payload: err.message})
+        dispatch({type: STUDENT_FETCH_CLASSES_FAILURE, payload: err.message})
     })
 }
 // STUDENT/TEACHER

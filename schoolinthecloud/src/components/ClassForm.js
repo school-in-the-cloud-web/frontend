@@ -21,7 +21,7 @@ const ClassForm = (props) => {
   const handleSubmit =  e => {
     e.preventDefault();
     props.addClass({...formValues, volunteer: Number(formValues.volunteer)});
-    // push('/admin-dashboard');
+    push('/admin-dashboard');
   }
 
   const handleChange = e => {

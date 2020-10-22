@@ -3,32 +3,52 @@ import {connect} from 'react-redux';
 import {studentFetchClasses} from '../actions';
 
 const StudentDashboard = (props) => {
-    const [searchedClasses, setSearchedClasses] = useState([]);
-    const [searchValue, setSearchValue] = useState({value: ''})
+    const [keyword, setKeyword] = useState('');
+    const [searched, setSearched] = useState('');
+    const [toggleSearch, setToggleSearch] = useState(false)
 
     console.log(props.studentClasses);
 
     // SUBJECT
 
     const handleChange = e => {
-        setSearchValue({value: e.target.value})
+         setKeyword(e.target.value)
     }
 
     const handleSubmit = e => {
-        
+        e.preventDefault();
+        setToggleSearch(true)
+        setSearched(props.studentClasses.filter(c => {
+            return c.class_subject.toLowerCase() === keyword.toLowerCase()
+        }))
     }
 
     useEffect(()=> {
         props.studentFetchClasses()
-    })
+    }, [])
     return (
         <div>
+            <h2>Search for Classes by Subject</h2>
+            
             <form onSubmit={handleSubmit}>
-                <input
-                type='text'
-                value={searchValue.value}
-                onChange={handleChange} />
+                <label htmlFor='keyword'>
+                    <input
+                    name='keyword'
+                    type='text'
+                    value={keyword}
+                    onChange={handleChange}
+                    placeholder='Enter a Subject'
+                     />
+                </label>
+                <button type='submit'>SEARCH</button>
             </form>
+            <div>
+                {toggleSearch && searched.map(c => {
+                    return (
+                        <p key={Math.random() * 100000}>{c.class_name}</p>
+                    )
+                })}
+            </div>
         </div>
     )
 }
