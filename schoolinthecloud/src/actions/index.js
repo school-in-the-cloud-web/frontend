@@ -57,7 +57,7 @@ export const fetchAllClasses = () => dispatch => {
         dispatch({type: FETCH_ALL_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err => {
-        console.log(err);
+        console.log(err.message);
         dispatch({type: FETCH_ALL_CLASSES_FAILURE, payload: err.message})
     })
 }
@@ -71,10 +71,11 @@ export const addClass = newClass => dispatch => {
         const {push} = useHistory();
         console.log(res);
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
+        // push('/admin-dashboard')
     })
     .catch(err => {
         console.log(err.response);
-        dispatch({type: ADD_CLASS_FAILURE, payload: err.response})
+        dispatch({type: ADD_CLASS_FAILURE, payload: err.response.data.error[0]})
     })
 }
 

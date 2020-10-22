@@ -55,6 +55,8 @@ export const AdminDashboard = (props) => {
                     <Link key={c.id} to={`/tasks/${c.id}`}>༄ {c.name}</Link>
             ))}
             </Div>
+            {props.isFetching && <p>One moment please...</p>}
+            {props.error && <p>We weren't able to retrieve the data you requested: {props.error}</p>}
         </div>
     )
 }
