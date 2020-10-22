@@ -3,6 +3,19 @@ import {connect} from 'react-redux';
 import {useParams, useHistory, Redirect} from 'react-router-dom';
 import {editClass, deleteClass, fetchAllClasses} from '../actions';
 
+import styled from 'styled-components';
+
+
+const Div = styled.div`
+    text-align: center;
+    width: 50%;
+    margin: auto;
+
+    span {
+        font-weight: bold;
+    }
+`
+
 const Class = (props) => {
 
     const [toggleDelete, setToggleDelete] = useState(false);
@@ -37,12 +50,12 @@ const Class = (props) => {
     }
 
     return (
-        <div>
-            <p>Class Name: {currentClass.name}</p>
-            <p>Subject: {currentClass.subject}</p>
-            <p>Description: {currentClass.description}</p>
-            <p>Instructor: {volunteer.firstName} {volunteer.lastName}</p>
-            <p>Start Date: {currentClass.date}</p> <br/>
+        <Div>
+            <p><span>Class Name: </span>{currentClass.name}</p>
+            <p><span>Subject: </span>{currentClass.subject}</p>
+            <p><span>Description: </span>{currentClass.description}</p>
+            <p><span>Instructor: </span>{volunteer.firstName} {volunteer.lastName}</p>
+            <p><span>Start Date: </span>{currentClass.date}</p> <br/>
         
         <button style={{margin: '0 5% 5% 0'}} onClick={() => {
             push(`/admin-dashboard/edit/${id}`)
@@ -58,7 +71,7 @@ const Class = (props) => {
             </div>
             }
             <br/>
-        </div>
+        </Div>
     )
 }
 

@@ -75,7 +75,7 @@ export const addClass = newClass => dispatch => {
     })
     .catch(err => {
         console.log(err.response);
-        dispatch({type: ADD_CLASS_FAILURE, payload: err.response.data})
+        dispatch({type: ADD_CLASS_FAILURE, payload: err.response})
     })
 }
 

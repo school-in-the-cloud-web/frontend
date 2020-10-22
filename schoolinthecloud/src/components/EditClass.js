@@ -4,6 +4,17 @@ import {useParams, useHistory} from 'react-router-dom';
 
 import {editClass, deleteClass} from '../actions';
 
+import styled from 'styled-components';
+
+const Div = styled.div`
+    form {
+        margin: 0 auto;
+        width: 60%;
+        margin-bottom: 4%;
+        padding-bottom: 3%;
+    }
+`
+
 
 const EditClass = (props) => {
 
@@ -38,19 +49,19 @@ const EditClass = (props) => {
         })
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
-        await props.editClass(currentClass.id, formValues);
+        props.editClass(currentClass.id, formValues);
         push('/admin-dashboard');
     }
 
 
 
     return (
-        <div>
+        <Div>
             <form onSubmit={handleSubmit}>
 
-                <label htmlFor='name'>NAME
+                <label htmlFor='name'>Name: 
                     <input
                     type='text'
                     name='name'
@@ -58,9 +69,9 @@ const EditClass = (props) => {
                     onChange={handleChange} />
                 </label><br/>
                 
-                <label htmlFor='volunteer'>VOLUNTEER
+                <label htmlFor='volunteer'>Volunteer: 
                     <select placeholder='Name of the volunteer/instructor' onChange={handleChange} name="volunteer" value={formValues.volunteer} id="volunteer">
-                    <option value=''>SELECT AN INSTRUCTOR</option>
+                    <option value=''>Instructor: </option>
                         {props.volunteers.map(vol => {
                             return(
                             <option key={vol.id} value={vol.id}>{vol.firstName} {vol.lastName}</option>
@@ -69,7 +80,7 @@ const EditClass = (props) => {
                     </select>
                 </label><br/>
 
-                <label htmlFor='subject'>SUBJECT
+                <label htmlFor='subject'>Subject: 
                     <input
                     type='text'
                     name='subject'
@@ -77,7 +88,7 @@ const EditClass = (props) => {
                     onChange={handleChange} />
                 </label><br/>
 
-                <label htmlFor='description'>DESCRIPTION
+                <label htmlFor='description'>Description: 
                     <input
                     type='text'
                     name='description'
@@ -85,7 +96,7 @@ const EditClass = (props) => {
                     onChange={handleChange} />
                 </label><br/>
 
-                <label htmlFor='date'>DATE
+                <label htmlFor='date'>Date: 
                     <input
                     type='text'
                     name='date'
@@ -97,7 +108,7 @@ const EditClass = (props) => {
 
             </form>
             {props.isFetching && <p>One moment please...</p>}
-        </div>
+        </Div>
     )
 }
 

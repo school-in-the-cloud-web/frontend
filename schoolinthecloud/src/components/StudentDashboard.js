@@ -8,6 +8,7 @@ const Div = styled.div`
 width: 80%;
 margin: auto;
 text-align: center;
+font-family: 'Montserrat', sans-serif;
 
     h2 {
         margin-bottom: 3%;
@@ -18,7 +19,7 @@ text-align: center;
         box-shadow: none;
 
         input {
-            margin: 5% auto;
+            margin: 7% auto;
         }
     }
 

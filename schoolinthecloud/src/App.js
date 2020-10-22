@@ -14,6 +14,7 @@ import ClassForm from './components/ClassForm';
 import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
 import Class from './components/Class'
+import MissionStatement from './components/MissionStatement'
 
 import StudentDashboard from './components/StudentDashboard';
 
@@ -46,12 +47,13 @@ function App(props) {
         
         
         </div>
-        <Route path='/'>
         <div className="jumbotron">
           <h1 className="display-3">School in the Cloud</h1>
+          <Route exact path='/'>
+          <MissionStatement />
+          </Route>
         </div>
         <br />
-        </Route>
         
           <Route exact path='/signin' component={Signin}/>
           <Route exact path='/signup' component={Signup} />
