@@ -53,9 +53,10 @@ const Signup = (props) => {
             .then(res => {
                 const token = res.data.token;
                 const decoded = jwt_decode(token);
-                props.logIn();
+                props.logIn(decoded.role);
                 localStorage.setItem('token', token);
-                localStorage.setItem('role', decoded.role)
+                localStorage.setItem('role', decoded.role);
+                localStorage.setItem('loggedIn', 'true');
                 if (localStorage.getItem('role') === 'volunteer') {
                     props.getVolunteerId(decoded.sub)
                     push('/volunteer-dashboard')

@@ -33,17 +33,19 @@ function App(props) {
   useEffect(()=>{
     setToken(localStorage.getItem('token'))
   }, [token])
+
+  console.log(props.role)
   
   return (
     <div style={{fontSize: '3rem'}}>
 
       <Jumbotron>
         <div className='nav'>
-        {token && <Link className="links" to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : localStorage.getItem('role') === 'volunteer' ? '/volunteer-dashboard' : ''}>DASHBOARD</Link>}
-        {!token && <Link className="links" to='/signin'>LOG IN</Link>}
-        {!token && <Link className="links" to='/signup'>SIGN UP</Link>}
-        {!token && <Link className="links" to='/'>HOME</Link>}
-        {token && <a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); props.logOut(); push('/signin')}}>LOG OUT</a>}
+        {props.isLoggedIn && <Link className="links" to={props.role === 'admin' ? '/admin-dashboard' : props.role === 'student' ? '/student-dashboard' : props.role === 'volunteer' ? '/volunteer-dashboard': ''}>DASHBOARD</Link>}
+        {!props.isLoggedIn && <Link className="links" to='/signin'>LOG IN</Link>}
+        {!props.isLoggedIn && <Link className="links" to='/signup'>SIGN UP</Link>}
+        {!props.isLoggedIn && <Link className="links" to='/'>HOME</Link>}
+        {props.isLoggedIn && <a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); localStorage.removeItem('loggedIn'); props.logOut(); push('/signin')}}>LOG OUT</a>}
         </div>
         <Route path='/'>
         <div className="jumbotron">
@@ -69,7 +71,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.isLoggedIn
+    isLoggedIn: state.isLoggedIn,
+    role: state.role
   }
 }
 

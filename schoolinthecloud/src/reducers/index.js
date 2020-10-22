@@ -37,6 +37,7 @@ const initialState = {
     isFetching: false,
     error: '',
     isLoggedIn: false,
+    role: ''
 }
 
 export const reducer = (state = initialState, action) => {
@@ -45,6 +46,7 @@ export const reducer = (state = initialState, action) => {
             return {
                  ...state,
                  isLoggedIn: true,
+                 role: action.payload
              }
         case LOG_OUT:
             return {
