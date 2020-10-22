@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 import {logIn, getVolunteerId} from '../actions';
 import jwt_decode from 'jwt-decode'
 
+import MissionStatement from './MissionStatement';
+
 const Signup = (props) => {
     const initalTValue = true
     const initialFormValues = {
@@ -94,6 +96,8 @@ const Signup = (props) => {
         <div className = 'MainDiv'> 
             {/* <br />
             <br /> */}
+            <MissionStatement />
+            <br/>
             <form onSubmit={submit}>
             <img id='image' src='https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg' />
                 <label  className='label'>First Name</label>

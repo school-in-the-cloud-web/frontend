@@ -54,9 +54,33 @@ h1 {
   /* padding-right: 10px; */
   font-family: 'Coiny', cursive;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: flex-end;
   /* padding: 25px; */
+}
+
+.add-class-link {
+  text-decoration: none;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  border-bottom: gray solid 2px;
+  letter-spacing: 2px;
+  transition-property: letter-spacing color border-bottom;
+  transition-duration: .9s;
+  transition-delay: .2s;
+  text-shadow: 0px 0px 0px lightgray;
+}
+
+.add-class-link:hover {
+  letter-spacing: 4px;
+  color: lightgray;
+  border-bottom: white solid 2px;
+  text-shadow: 5px 5px 7px gray;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .links {
