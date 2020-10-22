@@ -132,6 +132,5 @@ button, input, .role {
   font-size: 1.6rem;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
+  text-shadow: 5px 5px 7px gray;
 }
-
-
