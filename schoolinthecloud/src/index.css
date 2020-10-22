@@ -36,7 +36,7 @@ body {
   /* background-image: url('https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg'); */
   color: white;
   background-repeat: no-repeat;
-  height: 200vh;
+  height: 100vh;
   padding: 25px;
 }
 
@@ -67,8 +67,8 @@ h1 {
   border-bottom: gray solid 2px;
   letter-spacing: 2px;
   transition-property: letter-spacing color border-bottom;
-  transition-duration: .9s;
-  transition-delay: .2s;
+  transition-duration: .7s;
+  transition-delay: .1s;
   text-shadow: 0px 0px 0px lightgray;
 }
 
@@ -132,5 +132,32 @@ button, input, .role {
   font-size: 1.6rem;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
-  text-shadow: 5px 5px 7px gray;
 }
+
+.volunteer-card {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+.volunteer-card p {
+  margin: 5% auto;
+  text-shadow: 2px 2px 3px black;
+}
+
+
+.volunteer-card-big-text {
+  font-size: 4rem;
+  border-bottom: solid white 2px;
+  margin-bottom: 1%;
+  display: inline-block;
+  text-shadow: 2px 2px 3px black;
+}
+
+.volunteer-card form {
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 8%;
+}
+

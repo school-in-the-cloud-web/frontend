@@ -18,10 +18,10 @@ const ClassForm = (props) => {
   
   const [formValues, setFormValues] = useState(initialFormValues)
 
-  const handleSubmit = async e => {
+  const handleSubmit =  e => {
     e.preventDefault();
-    await props.addClass({...formValues, volunteer: Number(formValues.volunteer)});
-    push('/admin-dashboard');
+    props.addClass({...formValues, volunteer: Number(formValues.volunteer)});
+    // push('/admin-dashboard');
   }
 
   const handleChange = e => {

@@ -1,4 +1,5 @@
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import {useHistory} from 'react-router-dom';
 
 //ALL USER ACTIONS
 
@@ -89,8 +90,10 @@ export const addClass = newClass => dispatch => {
     axiosWithAuth()
     .post('/tasks', newClass)
     .then(async res => {
+        const {push} = useHistory();
         console.log(res);
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
+        push('/admin-dashboard')
     })
     .catch(err => {
         console.log(err.response);

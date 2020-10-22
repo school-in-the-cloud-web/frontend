@@ -12,10 +12,14 @@ const VolunteerDashboard = (props) => {
     }, [])
 
     return (
-        <div>
+        <div className='volunteer-card' >
+            <form>
+            <img id='image' src='https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg' />
             {props.volunteerClasses.map(c => {
-                return <p key={c.id}>{c.name}</p>
+                return <p key={c.id}><span className='volunteer-card-big-text'>{c.name}</span><br/>{c.subject}<br/>
+                {c.date}</p>
             })}
+            </form>
         </div>
     )
 }
