@@ -9,14 +9,14 @@ import {logIn, logOut} from './actions';
 
 import Signup from './components/Signup'
 import Signin from './components/Signin'
-import {Route, Link, useHistory} from 'react-router-dom'
+import { Route, useHistory } from "react-router-dom";
 import ClassForm from './components/ClassForm';
 import EditClass from './components/EditClass';
 import PrivateRoute from './utils/PrivateRoute';
 import Class from './components/Class'
 
 import StudentDashboard from './components/StudentDashboard';
-
+import Navbar from "./components/Navbar";
 import Footer from './components/Footer'
 
 
@@ -37,33 +37,42 @@ function App(props) {
   console.log(props.role)
   
   return (
-    <div style={{fontSize: '3rem'}}>
-
+    <div style={{ fontSize: "3rem" }}>
       <Jumbotron>
-        <div className='nav'>
-        {props.isLoggedIn && <><Link className="links" to={props.role === 'admin' ? '/admin-dashboard' : props.role === 'student' ? '/student-dashboard' : props.role === 'volunteer' ? '/volunteer-dashboard': ''}>DASHBOARD</Link><a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); localStorage.removeItem('loggedIn'); props.logOut(); push('/signin')}}>LOG OUT</a></>}
-        {!props.isLoggedIn && <><Link className="links" to='/signin'>LOG IN</Link><Link className="links" to='/signup'>SIGN UP</Link><Link className="links" to='/'>HOME</Link></>}
-        
-        
-        </div>
-        <Route path='/'>
-        <div className="jumbotron">
-          <h1 className="display-3">School in the Cloud</h1>
-        </div>
-        <br />
+        <Navbar />
+        <Route path="/">
+          <div className="jumbotron">
+            <h1 className="display-3">School in the Cloud</h1>
+          </div>
+          <br />
         </Route>
-        
-          <Route exact path='/signin' component={Signin}/>
-          <Route exact path='/signup' component={Signup} />
-          <PrivateRoute exact path='/admin-dashboard'component={AdminDashboard} />
-          <PrivateRoute exact path='/admin-dashboard/edit/:id' component={EditClass} />    
-          <PrivateRoute exact path='/admin-dashboard/add' component={ClassForm}/>
-          <PrivateRoute exact path='/tasks/:id' component={Class} />
-          <PrivateRoute exact path='/volunteer-dashboard' component={VolunteerDashboard} />
-          <PrivateRoute exact path='/student-dashboard' component={StudentDashboard} />
-          </Jumbotron>
-          <Footer />
 
+        <Route exact path="/signin" component={Signin} />
+        <Route exact path="/signup" component={Signup} />
+        <PrivateRoute
+          exact
+          path="/admin-dashboard"
+          component={AdminDashboard}
+        />
+        <PrivateRoute
+          exact
+          path="/admin-dashboard/edit/:id"
+          component={EditClass}
+        />
+        <PrivateRoute exact path="/admin-dashboard/add" component={ClassForm} />
+        <PrivateRoute exact path="/tasks/:id" component={Class} />
+        <PrivateRoute
+          exact
+          path="/volunteer-dashboard"
+          component={VolunteerDashboard}
+        />
+        <PrivateRoute
+          exact
+          path="/student-dashboard"
+          component={StudentDashboard}
+        />
+      </Jumbotron>
+      <Footer />
     </div>
   );
 };
