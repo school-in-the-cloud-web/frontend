@@ -6,6 +6,8 @@ import jwt_decode from "jwt-decode";
 import {connect} from 'react-redux';
 import {logIn, getVolunteerId} from '../actions';
 
+import MissionStatement from './MissionStatement';
+
 function Signin(props){
     const initialFormValues = {
         email: '',
@@ -57,7 +59,10 @@ function Signin(props){
     },[])
 
     return(
+        
     <div className='MainDiv'>
+        <MissionStatement/>
+        <br/>
         <form className='formSignIn' onSubmit={submit}>
             <br />
         <img id='image' src='https://i.pinimg.com/originals/e4/0e/aa/e40eaa8b9839461ea1c45889e5bfb7f9.jpg' />
@@ -77,7 +82,8 @@ function Signin(props){
             <p className='randomq'>Quote: {quote.quote}</p>
             <p className='randomq'>Author: {quote.author}</p>
         </footer>
-    </div>)
+    </div>
+    )
 }
 
 export default connect(null, {logIn, getVolunteerId})(Signin)

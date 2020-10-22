@@ -25,27 +25,29 @@ import VolunteerDashboard from './components/VolunteerDashboard';
 
 
 function App(props) {
+  const [token, setToken] = useState('')
 
   const {push} = useHistory();
   console.log(props.isLoggedIn);
 
-
+  useEffect(()=>{
+    setToken(localStorage.getItem('token'))
+  }, [token])
   
   return (
     <div style={{fontSize: '3rem'}}>
 
       <Jumbotron>
         <div className='nav'>
-        {props.isLoggedIn && <Link className="links" to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : localStorage.getItem('role') === 'volunteer' ? '/volunteer-dashboard' : ''}>DASHBOARD</Link>}
-        {!props.isLoggedIn && <Link className="links" to='/signin'>LOG IN</Link>}
-        {!props.isLoggedIn && <Link className="links" to='/signup'>SIGN UP</Link>}
-        {!props.isLoggedIn && <Link className="links" to='/'>HOME</Link>}
-        {props.isLoggedIn && <a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); props.logOut(); push('/signin')}}>LOG OUT</a>}
+        {token && <Link className="links" to={localStorage.getItem('role') === 'admin' ? '/admin-dashboard' : localStorage.getItem('role') === 'student' ? '/student-dashboard' : localStorage.getItem('role') === 'volunteer' ? '/volunteer-dashboard' : ''}>DASHBOARD</Link>}
+        {!token && <Link className="links" to='/signin'>LOG IN</Link>}
+        {!token && <Link className="links" to='/signup'>SIGN UP</Link>}
+        {!token && <Link className="links" to='/'>HOME</Link>}
+        {token && <a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); props.logOut(); push('/signin')}}>LOG OUT</a>}
         </div>
         <Route path='/'>
         <div className="jumbotron">
           <h1 className="display-3">School in the Cloud</h1>
-          <p>School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting. This helps kids in communities with high student to teacher ratios. It also provides retired volunteers a sense of purpose and meaning in their day to day life when they find themselves with more free time. The platform also connects volunteers with the students.</p>
         </div>
         <br />
         </Route>

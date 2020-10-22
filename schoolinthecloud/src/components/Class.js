@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {useParams, useHistory, Redirect} from 'react-router-dom';
-import {editClass, deleteClass} from '../actions';
+import {editClass, deleteClass, fetchAllClasses} from '../actions';
 
 const Class = (props) => {
 
@@ -9,7 +9,12 @@ const Class = (props) => {
 
     const {push} = useHistory();
 
+
     const {id} = useParams();
+
+    useEffect(()=> {
+        props.fetchAllClasses();
+    }, [])
 
     const currentClass = props.classes.find(c=>{
         return c.id == id;
@@ -18,7 +23,7 @@ const Class = (props) => {
     const volunteer = props.volunteers.find(c=>{
          return c.id == currentClass.volunteer_id
      }) || {};
-
+     console.log('useParams', id)
      console.log(volunteer)
     console.log(props.volunteers)
     console.log(currentClass)
@@ -33,25 +38,26 @@ const Class = (props) => {
 
     return (
         <div>
-            <p>CLASS NAME: {currentClass.name}</p>
-            <p>SUBJECT: {currentClass.subject}</p>
-            <p>DESCRIPTION: {currentClass.description}</p>
-            <p>INSTRUCTOR: {volunteer.firstName} {volunteer.lastName}</p>
-            <p>START DATE: {currentClass.date}</p>
+            <p>Class Name: {currentClass.name}</p>
+            <p>Subject: {currentClass.subject}</p>
+            <p>Description: {currentClass.description}</p>
+            <p>Instructor: {volunteer.firstName} {volunteer.lastName}</p>
+            <p>Start Date: {currentClass.date}</p> <br/>
         
-        <button onClick={() => {
+        <button style={{margin: '0 5% 5% 0'}} onClick={() => {
             push(`/admin-dashboard/edit/${id}`)
-        }}>EDIT CLASS</button>
-                    <button onClick={() => {setToggleDelete(!toggleDelete)}}>DELETE CLASS</button>
+        }}>༄ EDIT CLASS</button>
+                    <button onClick={() => {setToggleDelete(!toggleDelete)}}>DELETE CLASS ༄</button>
             {toggleDelete && 
             <div>
                 <p>ARE YOU SURE?</p>
-                <button onClick={handleDelete}>YES</button>
+                <button style={{margin: '0 5% 5% 0'}} onClick={handleDelete}>༄ YES</button>
                 <button onClick={() => {
                     setToggleDelete(!toggleDelete)
-                }}>NO</button>
+                }}>NO ༄</button>
             </div>
             }
+            <br/>
         </div>
     )
 }
@@ -64,4 +70,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {editClass, deleteClass})(Class)
+export default connect(mapStateToProps, {editClass, deleteClass, fetchAllClasses})(Class)
