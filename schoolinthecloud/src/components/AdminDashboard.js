@@ -18,9 +18,19 @@ const Div = styled.div`
     flex-direction: column;
 
     a {
+        border-bottom: solid transparent 2px;
         text-decoration: none;
         font-family:'Montserrat', sans-serif;
         color: white;
+        margin: 1% auto;
+        transition-property: transform;
+        transition-duration: .7s;
+        transition-delay: .08s;
+        transform: scale(1);
+
+        &:hover {
+            transform: scale(1.3)
+        }
     }
 
 `
@@ -52,7 +62,7 @@ export const AdminDashboard = (props) => {
             <Link className='add-class-link' to='/admin-dashboard/add'>ADD A CLASS</Link><br/><br/><br/>
             <Div>
             {props.classes.map(c => (
-                    <Link key={c.id} to={`/tasks/${c.id}`}>༄ {c.name}</Link>
+                    <Link key={c.id} to={`/tasks/${c.id}`}><span>༄ </span>{c.name}</Link>
             ))}
             </Div>
             {props.isFetching && <p>One moment please...</p>}
