@@ -38,9 +38,9 @@ const EditClass = (props) => {
         })
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
-        await props.editClass(currentClass.id, formValues);
+        props.editClass(currentClass.id, formValues);
         push('/admin-dashboard');
     }
 

@@ -41,11 +41,10 @@ function App(props) {
 
       <Jumbotron>
         <div className='nav'>
-        {props.isLoggedIn && <Link className="links" to={props.role === 'admin' ? '/admin-dashboard' : props.role === 'student' ? '/student-dashboard' : props.role === 'volunteer' ? '/volunteer-dashboard': ''}>DASHBOARD</Link>}
-        {!props.isLoggedIn && <Link className="links" to='/signin'>LOG IN</Link>}
-        {!props.isLoggedIn && <Link className="links" to='/signup'>SIGN UP</Link>}
-        {!props.isLoggedIn && <Link className="links" to='/'>HOME</Link>}
-        {props.isLoggedIn && <a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); localStorage.removeItem('loggedIn'); props.logOut(); push('/signin')}}>LOG OUT</a>}
+        {props.isLoggedIn && <><Link className="links" to={props.role === 'admin' ? '/admin-dashboard' : props.role === 'student' ? '/student-dashboard' : props.role === 'volunteer' ? '/volunteer-dashboard': ''}>DASHBOARD</Link><a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); localStorage.removeItem('loggedIn'); props.logOut(); push('/signin')}}>LOG OUT</a></>}
+        {!props.isLoggedIn && <><Link className="links" to='/signin'>LOG IN</Link><Link className="links" to='/signup'>SIGN UP</Link><Link className="links" to='/'>HOME</Link></>}
+        
+        
         </div>
         <Route path='/'>
         <div className="jumbotron">
