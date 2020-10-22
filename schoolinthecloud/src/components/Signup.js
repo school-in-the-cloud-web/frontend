@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {logIn, getVolunteerId} from '../actions';
+import {logIn} from '../actions';
 import jwt_decode from 'jwt-decode'
 
 import MissionStatement from './MissionStatement';
@@ -142,4 +142,4 @@ const Signup = (props) => {
     )
 }
 
-export default connect(null, {logIn, getVolunteerId})(Signup);
+export default connect(null, {logIn})(Signup);

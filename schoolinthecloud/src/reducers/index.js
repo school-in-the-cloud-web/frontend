@@ -12,7 +12,6 @@ import {FETCH_ALL_CLASSES_START,
         DELETE_CLASS_FAILURE,
         LOG_IN,
         LOG_OUT,
-        GET_VOLUNTEER_ID,
         FETCH_VOLUNTEERS_START,
         FETCH_VOLUNTEERS_SUCCESS,
         FETCH_VOLUNTEERS_FAILURE,
@@ -42,6 +41,9 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
+
+        // ALL
+
         case LOG_IN:
             return {
                  ...state,
@@ -53,6 +55,9 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: false,
             }
+
+        // VOLUNTEER
+
         case VOLUNTEER_FETCH_CLASSES_START:
             return {
                 ...state,
@@ -70,10 +75,25 @@ export const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: action.payload,
             }
-        case GET_VOLUNTEER_ID:
+
+        // ADMIN
+
+        case FETCH_VOLUNTEERS_START:
             return {
                 ...state,
-                volunteerId: action.payload
+                isFetching: true,
+            }
+        case FETCH_VOLUNTEERS_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                volunteers: action.payload,
+            }
+        case FETCH_VOLUNTEERS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload,
             }
         case FETCH_ALL_CLASSES_START:
             return {
@@ -142,23 +162,9 @@ export const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: action.payload
             }
-        case FETCH_VOLUNTEERS_START:
-            return {
-                ...state,
-                isFetching: true,
-            }
-        case FETCH_VOLUNTEERS_SUCCESS:
-            return {
-                ...state,
-                isFetching: false,
-                volunteers: action.payload,
-            }
-        case FETCH_VOLUNTEERS_FAILURE:
-            return {
-                ...state,
-                isFetching: false,
-                error: action.payload,
-            }
+
+        // STUDENT
+
         case STUDENT_FETCH_CLASSES_START:
             return {
                 ...state,
@@ -174,7 +180,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                error: action.payload,
+                error: '' + action.payload.status + ': ' + action.payload.response
             }
         default:
             return state;

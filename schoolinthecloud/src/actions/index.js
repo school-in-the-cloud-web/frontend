@@ -31,19 +31,9 @@ export const FETCH_VOLUNTEERS_FAILURE = 'FETCH_VOLUNTEERS_FAILURE';
 
 //VOLUNTEER ACTIONS
 
-export const GET_VOLUNTEER_ID = 'GET_VOLUNTEER_ID';
-
 export const VOLUNTEER_FETCH_CLASSES_START = 'VOLUNTEER_GET_CLASSES';
 export const VOLUNTEER_FETCH_CLASSES_SUCCESS = 'VOLUNTEER_GET_CLASSES_SUCCESS';
 export const VOLUNTEER_FETCH_CLASSES_FAILURE = 'VOLUNTEER_GET_CLASSES_FAILURE';
-
-
-
-// TEACHER/STUDENT ACTIONS
-
-export const FETCH_OWN_CLASSES_START = 'FETCH_OWN_CLASSES_START';
-export const FETCH_OWN_CLASSES_SUCCESS = 'FETCH_OWN_CLASSES_SUCCESS';
-export const FETCH_OWN_CLASSES_FAILURE = 'FETCH_OWN_CLASSES_FAILURE';
 
 
 
@@ -53,18 +43,6 @@ export const STUDENT_FETCH_CLASSES_START = 'STUDENT_FETCH_CLASSES_START';
 export const STUDENT_FETCH_CLASSES_SUCCESS = 'STUDENT_FETCH_CLASSES_SUCCESS';
 export const STUDENT_FETCH_CLASSES_FAILURE = 'STUDENT_FETCH_CLASSES_FAILURE';
 
-
-// export const FETCH_AVAILABLE_CLASSES_START = 'FETCH_AVAILABLE_CLASSES_START';
-// export const FETCH_AVAILABLE_CLASSES_SUCCESS = 'FETCH_AVAILABLE_CLASSES_SUCCESS';
-// export const FETCH_AVAILABLE_CLASSES_FAILURE = 'FETCH_AVAILABLE_CLASSES_FAILURE';
-
-export const ENROLL_CLASS_START = 'ENROLL_CLASS_START';
-export const ENROLL_CLASS_SUCCESS = 'ENROLL_CLASS_SUCCESS';
-export const ENROLL_CLASS_FAILURE = 'ENROLL_CLASS_FAILURE';
-
-export const UNENROLL_CLASS_START = 'UNENROLL_CLASS_START';
-export const UNENROLL_CLASS_SUCCESS = 'UNENROLL_CLASS_SUCCESS';
-export const UNENROLL_CLASS_FAILURE = 'UNENROLL_CLASS_FAILURE';
 
 
 
@@ -145,25 +123,8 @@ export const fetchVolunteers = () => dispatch => {
 
 
 
-//ALL
-
-export const logIn = role => dispatch => {
-    dispatch({type: LOG_IN, payload: role});
-}
-
-export const logOut = () => dispatch => {
-    dispatch({type: LOG_OUT})
-}
-
-
-
-
 
 //VOLUNTEER
-
-export const getVolunteerId = id => dispatch => {
-    dispatch({type: GET_VOLUNTEER_ID, payload: id});
-}
 
 export const volunteerFetchClasses = () => dispatch => {
     dispatch({type: VOLUNTEER_FETCH_CLASSES_START});
@@ -194,14 +155,18 @@ export const studentFetchClasses = () => dispatch => {
         dispatch({type: STUDENT_FETCH_CLASSES_SUCCESS, payload: res.data})
     })
     .catch(err=>{
-        console.log(err.response)
-        dispatch({type: STUDENT_FETCH_CLASSES_FAILURE, payload: err.message})
+        console.log('errorrrr', err.response)
+        dispatch({type: STUDENT_FETCH_CLASSES_FAILURE, payload: {response: err.response.statusText, status: err.response.status}})
     })
 }
-// STUDENT/TEACHER
 
-// export const fetchOwnClasses = () => dispatch => {
-//     dispatch({type: FETCH_OWN_CLASSES_START});
-//     axiosWithAuth()
-//     .get('/')
-// }
+
+//ALL
+
+export const logIn = role => dispatch => {
+    dispatch({type: LOG_IN, payload: role});
+}
+
+export const logOut = () => dispatch => {
+    dispatch({type: LOG_OUT})
+}

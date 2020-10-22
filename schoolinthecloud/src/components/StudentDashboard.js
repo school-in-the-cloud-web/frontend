@@ -1,6 +1,41 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {studentFetchClasses} from '../actions';
+import styled from 'styled-components';
+
+
+const Div = styled.div`
+width: 80%;
+margin: auto;
+text-align: center;
+
+    h2 {
+        margin-bottom: 3%;
+    }
+    
+    form {
+        margin: auto;
+        box-shadow: none;
+
+        input {
+            margin: 5% auto;
+        }
+    }
+
+    div {
+
+        div {
+            width: 60%;
+            margin: 5% auto;
+            border: solid white 2px;
+            line-height: 5rem;
+        }
+
+        p {
+            margin: 3% auto;
+        }
+    }
+`
 
 const StudentDashboard = (props) => {
     const [keyword, setKeyword] = useState('');
@@ -19,7 +54,12 @@ const StudentDashboard = (props) => {
         e.preventDefault();
         setToggleSearch(true)
         setSearched(props.studentClasses.filter(c => {
-            return c.class_subject.toLowerCase() === keyword.toLowerCase()
+            const subArr = c.class_subject.split(/\W/).map(subject=>subject.toLowerCase())
+            return subArr.some(sub => {
+                return keyword.toLowerCase().split(/\W/).some(word=>{
+                    return word === sub
+                })
+            })
         }))
     }
 
@@ -27,8 +67,9 @@ const StudentDashboard = (props) => {
         props.studentFetchClasses()
     }, [])
     return (
-        <div>
+        <Div>
             <h2>Search for Classes by Subject</h2>
+            {props.error && <p>We failed to retrieve the available classes due to an error of {props.error}</p>}
             
             <form onSubmit={handleSubmit}>
                 <label htmlFor='keyword'>
@@ -43,13 +84,18 @@ const StudentDashboard = (props) => {
                 <button type='submit'>SEARCH</button>
             </form>
             <div>
-                {toggleSearch && searched.map(c => {
+                {toggleSearch && searched.length >= 1 ? searched.map(c => {
                     return (
-                        <p key={Math.random() * 100000}>{c.class_name}</p>
+                        <div key={Math.random() * 100000}>
+                            <p><span style={{fontWeight: 'bold'}}>Class:</span> {c.class_name}</p>
+                            <p><span style={{fontWeight: 'bold'}}>Subject:</span> {c.class_subject}</p>
+                            <p><span style={{fontWeight: 'bold'}}>Instructor:</span> {c.instructor_firstName} {c.instructor_lastName}</p>
+                            <p><span style={{fontWeight: 'bold'}}>Start Date:</span> {c.class_date}</p>
+                        </div>
                     )
-                })}
+                }) : toggleSearch && searched.length < 1 ? <p>We didn't find any classes matching that keyword</p> : ''}
             </div>
-        </div>
+        </Div>
     )
 }
 
