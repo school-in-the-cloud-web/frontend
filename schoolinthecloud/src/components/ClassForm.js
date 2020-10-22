@@ -21,7 +21,7 @@ const ClassForm = (props) => {
   const handleSubmit =  e => {
     e.preventDefault();
     props.addClass({...formValues, volunteer: Number(formValues.volunteer)});
-    // push('/admin-dashboard');
+    push('/admin-dashboard');
   }
 
   const handleChange = e => {
@@ -73,6 +73,7 @@ const ClassForm = (props) => {
       </FormGroup>
       <br />
       <Button type='submit'>Submit Class</Button>
+      {props.isFetching && <p>One moment please...</p>}
     </Form>
   );
 }

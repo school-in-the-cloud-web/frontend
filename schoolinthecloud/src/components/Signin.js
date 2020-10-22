@@ -4,7 +4,7 @@ import axios from 'axios'
 import './form.css'
 import jwt_decode from "jwt-decode";
 import {connect} from 'react-redux';
-import {logIn, getVolunteerId} from '../actions';
+import {logIn} from '../actions';
 
 import MissionStatement from './MissionStatement';
 
@@ -15,7 +15,7 @@ function Signin(props){
     }
     const [formValues, setFormvalues] = useState(initialFormValues)
     const [quote, setQuote] = useState([])
-
+    const [error, setError] = useState('');
     const {push} = useHistory();
 
     const change = e => {
@@ -47,6 +47,7 @@ function Signin(props){
         })
         .catch(err => {
             console.log(err.response);
+            setError(err.response.data.message)
         })
     }
 
@@ -72,6 +73,7 @@ function Signin(props){
             <input onChange={change} value={formValues.password} type='password' name='password'/>
             <br />
             <label></label>
+            {error && <p style={{color: 'red', fontSize: '2.5rem'}}>{error}</p>}
             <input className='sesubmit' type='submit'/>
             <br />
         </form>
@@ -86,4 +88,4 @@ function Signin(props){
     )
 }
 
-export default connect(null, {logIn, getVolunteerId})(Signin)
+export default connect(null, {logIn})(Signin)
