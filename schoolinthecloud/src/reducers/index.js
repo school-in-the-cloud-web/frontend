@@ -160,7 +160,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                error: action.payload
+                error: 'Error ' + action.payload.status + ': ' + action.payload.statusText
             }
 
         // STUDENT

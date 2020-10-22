@@ -29,9 +29,9 @@ const Class = (props) => {
     console.log(currentClass)
 
 
-    const handleDelete = async e => {
+    const handleDelete = e => {
         e.preventDefault();
-        await props.deleteClass(currentClass.id);
+        props.deleteClass(currentClass.id);
         push('/admin-dashboard');
         
     }

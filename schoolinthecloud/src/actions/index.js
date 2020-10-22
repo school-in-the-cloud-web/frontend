@@ -75,7 +75,7 @@ export const addClass = newClass => dispatch => {
     })
     .catch(err => {
         console.log(err.response);
-        dispatch({type: ADD_CLASS_FAILURE, payload: err.response.data.error[0]})
+        dispatch({type: ADD_CLASS_FAILURE, payload: err.response.data})
     })
 }
 
@@ -103,7 +103,7 @@ export const deleteClass = id => dispatch => {
     })
     .catch(err => {
         console.log(err.response);
-        dispatch({type: DELETE_CLASS_FAILURE, payload: err.message});
+        dispatch({type: DELETE_CLASS_FAILURE, payload: {status: err.response.status, statusText: err.response.statusText}});
     })
 }
 
