@@ -28,12 +28,21 @@ import VolunteerDashboard from './components/VolunteerDashboard';
 function App(props) {
   const [token, setToken] = useState('')
 
+
   const {push} = useHistory();
   console.log(props.isLoggedIn);
 
+  // useEffect(()=>{
+  //   setToken(localStorage.getItem('token'))
+
+  // }, [token])
+
   useEffect(()=>{
-    setToken(localStorage.getItem('token'))
-  }, [token])
+    const token = localStorage.getItem('token');
+    if (token) {
+      props.logIn();
+    }
+  }, [])
 
   console.log(props.role)
   
@@ -42,8 +51,27 @@ function App(props) {
 
       <Jumbotron>
         <div className='nav'>
-        {props.isLoggedIn && <><Link className="links" to={props.role === 'admin' ? '/admin-dashboard' : props.role === 'student' ? '/student-dashboard' : props.role === 'volunteer' ? '/volunteer-dashboard': ''}>DASHBOARD</Link><a className="links" href='' onClick={e => {e.preventDefault(); localStorage.removeItem('token'); localStorage.removeItem('role'); localStorage.removeItem('loggedIn'); props.logOut(); push('/signin')}}>LOG OUT</a></>}
-        {!props.isLoggedIn && <><Link className="links" to='/signin'>LOG IN</Link><Link className="links" to='/signup'>SIGN UP</Link><Link className="links" to='/'>HOME</Link></>}
+        {props.isLoggedIn && <><Link className="links" to={
+          props.role === 'admin' ? '/admin-dashboard'
+          : props.role === 'student' ? '/student-dashboard' 
+          : props.role === 'volunteer' ? '/volunteer-dashboard'
+          : ''}>DASHBOARD</Link>
+
+        <a className="links" href='' onClick={e => {
+          e.preventDefault(); 
+          localStorage.removeItem('token'); 
+          localStorage.removeItem('role'); 
+          localStorage.removeItem('loggedIn'); 
+          props.logOut(); 
+          push('/signin')}}>LOG OUT</a>
+        
+        </>}
+        {!props.isLoggedIn && 
+        <>
+        <Link className="links" to='/signin'>LOG IN</Link>
+        <Link className="links" to='/signup'>SIGN UP</Link>
+        <Link className="links" to='/'>HOME</Link>
+        </>}
         
         
         </div>
@@ -77,4 +105,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {logOut})(App);
+export default connect(mapStateToProps, {logOut, logIn})(App);
