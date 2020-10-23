@@ -29,7 +29,7 @@ const Signup = (props) => {
     const {push} = useHistory();
 
     useEffect(()=>{
-        axios.get('http://quotes.stormconsultancy.co.uk/random.json')
+        axios.get('https://quotes.stormconsultancy.co.uk/random.json')
         .then(res => {
             setQuote(res.data)
         }).catch(err => {
