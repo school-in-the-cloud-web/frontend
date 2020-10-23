@@ -67,7 +67,7 @@ export const addClass = newClass => dispatch => {
     dispatch({type: ADD_CLASS_START});
     axiosWithAuth()
     .post('/tasks', newClass)
-    .then(async res => {
+    .then(res => {
         const {push} = useHistory();
         console.log(res);
         dispatch({type: ADD_CLASS_SUCCESS, payload: res.data});
@@ -75,7 +75,7 @@ export const addClass = newClass => dispatch => {
     })
     .catch(err => {
         console.log(err.response);
-        dispatch({type: ADD_CLASS_FAILURE, payload: err.response})
+        // dispatch({type: ADD_CLASS_FAILURE, payload: err.response})
     })
 }
 
