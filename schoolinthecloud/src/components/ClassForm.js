@@ -73,6 +73,7 @@ const ClassForm = (props) => {
         </Label>
       </FormGroup>
       <br />
+      <p style={{marginBottom: '2%'}}>* ALL FIELDS ARE REQUIRED *</p>
       <Button style={{marginBottom: '20px'}} type='submit'>Submit Class</Button>
       {props.isFetching && <p>One moment please...</p>}
     </Form>
