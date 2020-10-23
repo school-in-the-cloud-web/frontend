@@ -25,6 +25,7 @@ const Signup = (props) => {
     const [errors, setErrors] = useState(initialFormValues)
     const [formValues, setFormvalues] = useState(initialFormValues)
     const [quote, setQuote] = useState([])
+    const [signUpErrors, setSignUpErrors] = useState('');
 
     const {push} = useHistory();
 
@@ -58,7 +59,6 @@ const Signup = (props) => {
                 localStorage.setItem('role', decoded.role);
                 localStorage.setItem('loggedIn', 'true');
                 if (localStorage.getItem('role') === 'volunteer') {
-                    props.getVolunteerId(decoded.sub)
                     push('/volunteer-dashboard')
                 } else if (localStorage.getItem('role') === 'student') {
                     push('/student-dashboard')
@@ -70,6 +70,7 @@ const Signup = (props) => {
         })
         .catch(err => {
             console.log(err.response)
+            setSignUpErrors(err.response.data.message);
         })
         
     }
@@ -131,6 +132,7 @@ const Signup = (props) => {
                     <br />
                     <br />
                 </label>
+                {signUpErrors && <p style={{color: 'red'}}>{signUpErrors}</p>}
             </form>
             <br />
             <footer>
