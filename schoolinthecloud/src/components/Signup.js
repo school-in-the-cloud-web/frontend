@@ -29,9 +29,9 @@ const Signup = (props) => {
     const {push} = useHistory();
 
     useEffect(()=>{
-        axios.get('https://quotes.stormconsultancy.co.uk/random.json')
+        axios.get('https://cat-fact.herokuapp.com/facts')
         .then(res => {
-            setQuote(res.data)
+            setQuote(res.data.all[Math.floor(Math.random()* 200)])
         }).catch(err => {
             console.log('error: ', err)})
     },[])
@@ -134,9 +134,9 @@ const Signup = (props) => {
             </form>
             <br />
             <footer>
-            <h2 className='randomq'>RANDOM QUOTE:</h2>
-            <p className='randomq'>Quote: {quote.quote}</p>
-            <p className='randomq'>Author: {quote.author}</p>
+                <h2 className='randomq'>RANDOM CAT FACTS</h2>
+                <p className='randomq'>Fact: {quote.text}</p>
+                {/* <p className='randomq'>Author: {quote.quoteAuthor}</p> */}
         </footer>
         </div>
         </>
