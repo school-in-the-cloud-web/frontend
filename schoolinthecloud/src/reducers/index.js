@@ -121,13 +121,13 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                classes: state.classes
+                classes: action.payload
             };
         case ADD_CLASS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                error: action.payload
+                error: action.payload.data.error.join(', ')
             };
         case EDIT_CLASS_START:
             return {
